@@ -1,0 +1,358 @@
+/* About Us Page Styles */
+.about-us-page {
+  font-family: 'Inter', sans-serif;
+  color: #1e293b;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: max-content;
+}
+
+/* Hero Section */
+.about-hero {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  color: white;
+  padding: 0.1rem 0 4rem;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main About Section */
+.about-main {
+  padding: 5rem 0;
+  background: #ffffff;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.about-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #1e293b;
+}
+
+.journey-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 2rem;
+}
+
+/* Stats Container */
+.stats-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #3b82f6;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.about-img, .school-img {
+  width: 100%;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mission & Vision Cards */
+.mission-vision {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.mission-card, .vision-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #f8fafc;
+  transition: transform 0.3s ease;
+}
+
+.mission-card:hover, .vision-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mission-card h3, .vision-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.mission-card p, .vision-card p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* What We Provide Section */
+.what-we-provide {
+  padding: 5rem 0;
+  background: #f8fafc;
+}
+
+.what-we-provide h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #1e293b;
+}
+
+.provide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.provide-item {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.provide-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.provide-item .icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.provide-item h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1e293b;
+}
+
+.provide-item p {
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Special Programs */
+.special-programs {
+  padding: 5rem 0;
+  background: white;
+}
+
+.special-programs h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.program-card {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.program-card h3 {
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  color: #1e293b;
+}
+
+.program-card p {
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.program-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.program-card ul li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #64748b;
+}
+
+.program-card ul li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #3b82f6;
+}
+
+/* School Section */
+.school-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.school-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.school-text h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.school-text h3 {
+  font-size: 1.25rem;
+  color: #3b82f6;
+  margin-bottom: 1.5rem;
+}
+
+.school-text p {
+  line-height: 1.8;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+.impact-stats {
+  background: white;
+  padding: 1rem;
+  border-left: 4px solid #3b82f6;
+  margin: 1.5rem 0;
+}
+
+.impact-stats strong {
+  color: #3b82f6;
+  font-size: 1.1rem;
+}
+
+/* Commitments Section */
+.commitments {
+  padding: 5rem 0;
+  background: white;
+}
+
+.commitments h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+}
+
+.commitments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.commitment-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.commitment-item:hover {
+  background: #e0f2fe;
+  transform: translateX(5px);
+}
+
+.check-icon {
+  width: 30px;
+  height: 30px;
+  background: #3b82f6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.commitment-item p {
+  margin: 0;
+  color: #1e293b;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-grid, 
+  .mission-vision, 
+  .school-content,
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .about-hero h1 {
+    font-size: 2rem;
+  }
+
+  .about-hero {
+    padding: 6rem 0 3rem;
+  }
+
+  .stats-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .what-we-provide h2,
+  .special-programs h2,
+  .commitments h2 {
+    font-size: 1.75rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+}
