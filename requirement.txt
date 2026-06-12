@@ -1,4 +1,5 @@
 django,
 djangorestframework,
 razorpay,
-django-cors-headers
+django-cors-headers,
+dotenv

@@ -1,0 +1,524 @@
+/* FoodExpenseDetails.css */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --beige: #F3E8D3;
+  --beige-dark: #e8d9bb;
+  --lime: #92B775;
+  --lime-dark: #6e9a54;
+  --lime-pale: rgba(146, 183, 117, 0.12);
+  --green: #133215;
+  --green-mid: #1e4d20;
+  --text-muted: #7a7a62;
+}
+
+body {
+  background: var(--beige);
+  font-family: 'DM Sans', sans-serif;
+  color: var(--green);
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.delay-1 {
+  transition-delay: 0.08s;
+}
+
+.delay-2 {
+  transition-delay: 0.16s;
+}
+
+.delay-3 {
+  transition-delay: 0.24s;
+}
+
+.delay-4 {
+  transition-delay: 0.32s;
+}
+
+.delay-5 {
+  transition-delay: 0.4s;
+}
+
+/* ══════════════════════════════
+   FOOD SECTION WRAPPER
+══════════════════════════════ */
+.food-section {
+  padding: 72px 5% 64px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── TOP: label + heading + desc ── */
+.fs-top {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 40px 60px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 680px) {
+  .fs-top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+.fs-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime-dark);
+  margin-bottom: 10px;
+}
+
+.fs-eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--lime);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.fs-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.75rem, 3.2vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.6px;
+  color: var(--green);
+}
+
+.fs-heading em {
+  font-style: normal;
+  color: var(--lime-dark);
+}
+
+.fs-desc {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  align-self: end;
+  padding-bottom: 4px;
+}
+
+/* ── DIVIDER ── */
+.fs-divider {
+  height: 1px;
+  background: linear-gradient(90deg, var(--lime) 0%, transparent 100%);
+  opacity: 0.35;
+  margin-bottom: 44px;
+}
+
+/* ── MAIN GRID: cost card + sponsor ── */
+.fs-main {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 700px) {
+  .fs-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─ COST CARD ─ */
+.cost-card {
+  background: var(--green);
+  border-radius: 18px;
+  padding: 30px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cost-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 35px -12px rgba(19, 50, 21, 0.3);
+}
+
+.cost-card::after {
+  content: '₹';
+  position: absolute;
+  right: -12px;
+  bottom: -18px;
+  font-family: 'Playfair Display', serif;
+  font-size: 7rem;
+  font-weight: 800;
+  color: rgba(146, 183, 117, 0.07);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.cc-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(146, 183, 117, 0.6);
+  margin-bottom: 6px;
+}
+
+.cc-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.6rem;
+  font-weight: 800;
+  color: var(--lime);
+  line-height: 1;
+  animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+  0%, 100% {
+    text-shadow: 0 0 0px rgba(146, 183, 117, 0);
+  }
+  50% {
+    text-shadow: 0 0 8px rgba(146, 183, 117, 0.5);
+  }
+}
+
+.cc-sub {
+  font-size: 0.78rem;
+  color: rgba(243, 232, 211, 0.45);
+  margin-bottom: 22px;
+}
+
+.meal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.meal-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: rgba(243, 232, 211, 0.8);
+}
+
+.meal-dot {
+  width: 24px;
+  height: 24px;
+  background: rgba(146, 183, 117, 0.18);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.meal-list li:hover .meal-dot {
+  transform: scale(1.1);
+}
+
+.cc-badge {
+  margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(146, 183, 117, 0.15);
+  border: 1px solid rgba(146, 183, 117, 0.3);
+  border-radius: 100px;
+  padding: 7px 14px;
+  font-size: 0.75rem;
+  color: var(--lime);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.cc-badge:hover {
+  background: rgba(146, 183, 117, 0.25);
+  transform: scale(1.02);
+}
+
+.badge-dot-sm {
+  width: 6px;
+  height: 6px;
+  background: var(--lime);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* ─ SPONSOR SIDE ─ */
+.sponsor-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sp-header {
+  margin-bottom: 4px;
+}
+
+.sp-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+
+.sp-header p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* programme items */
+.sp-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--beige-dark);
+  border: 1.5px solid transparent;
+  border-radius: 12px;
+  padding: 12px 16px;
+  cursor: default;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.sp-item:hover {
+  border-color: var(--lime);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(146, 183, 117, 0.15);
+}
+
+.sp-num {
+  width: 28px;
+  height: 28px;
+  background: var(--green);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--lime);
+  flex-shrink: 0;
+}
+
+.sp-text strong {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--green);
+  line-height: 1.3;
+}
+
+.sp-text span {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+/* donation tiers */
+.sp-tiers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.tier-chip {
+  border-radius: 10px;
+  padding: 11px 14px;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  background-clip: padding-box;
+  will-change: transform;
+}
+
+/* FIXED: Separate hover animation without conflicting transforms */
+.tier-chip:hover {
+  transform: translateY(-4px);
+}
+
+.tc-1 {
+  background: var(--beige-dark);
+  border-color: rgba(110, 154, 84, 0.35);
+}
+
+.tc-1:hover {
+  border-color: var(--lime);
+  background: #efe0c8;
+  box-shadow: 0 8px 20px rgba(110, 154, 84, 0.2);
+}
+
+.tc-2 {
+  background: var(--lime-pale);
+  border-color: var(--lime);
+}
+
+.tc-2:hover {
+  background: rgba(146, 183, 117, 0.25);
+  border-color: var(--lime-dark);
+  box-shadow: 0 8px 20px rgba(146, 183, 117, 0.25);
+}
+
+.tc-3 {
+  background: rgba(19, 50, 21, 0.06);
+  border-color: rgba(19, 50, 21, 0.14);
+}
+
+.tc-3:hover {
+  background: rgba(19, 50, 21, 0.12);
+  border-color: var(--green-mid);
+  box-shadow: 0 8px 20px rgba(19, 50, 21, 0.15);
+}
+
+.tc-4 {
+  background: var(--green);
+  border-color: var(--lime-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Special shimmer animation for full year donation (premium highlight) */
+.tc-4::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(146, 183, 117, 0.15) 45%,
+    rgba(146, 183, 117, 0.25) 50%,
+    rgba(146, 183, 117, 0.15) 55%,
+    transparent 70%
+  );
+  transform: rotate(25deg);
+  animation: shimmer 3s infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: rotate(25deg) translateX(-100%);
+  }
+  100% {
+    transform: rotate(25deg) translateX(100%);
+  }
+}
+
+.tc-4:hover {
+  background: var(--green-mid);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(19, 50, 21, 0.35);
+}
+
+/* Pulse animation for donation click/hover - FIXED: stays visible */
+@keyframes donatePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(146, 183, 117, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(146, 183, 117, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(146, 183, 117, 0);
+  }
+}
+
+.tier-chip.highlight-pulse {
+  animation: donatePulse 0.6s ease-out;
+}
+
+.tier-chip .ta {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  line-height: 1.1;
+  transition: transform 0.2s ease;
+}
+
+.tier-chip:hover .ta {
+  transform: scale(1.02);
+}
+
+.tier-chip .td {
+  font-size: 0.68rem;
+  margin-top: 3px;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+.tc-1 .ta,
+.tc-2 .ta,
+.tc-3 .ta {
+  color: var(--green);
+}
+
+.tc-4 .ta {
+  color: var(--lime);
+}
+
+.tc-1 .td,
+.tc-2 .td,
+.tc-3 .td {
+  color: var(--text-muted);
+}
+
+.tc-4 .td {
+  color: rgba(243, 232, 211, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .food-section {
+    padding: 48px 5% 40px;
+  }
+  
+  .sp-tiers {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .cost-card {
+    padding: 22px 20px;
+  }
+  
+  .cc-amount {
+    font-size: 2.8rem;
+  }
+}

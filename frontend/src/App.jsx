@@ -1,21 +1,22 @@
-import { useState } from 'react'
-import Navbar from './Components/Navbar'
-import { BrowserRouter } from 'react-router-dom'
-import AboutUs from './Components/AboutUs'
-import './App.css'
-import HeroSection from './Components/HeroSection'
+// App.js
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import StatsStrip from './components/StatsStrip';
+import FoodExpenseDetails from './components/FoodExpenseDetails';
+import About from './components/AboutUs';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <BrowserRouter>
+    <div className="app">
       <Navbar />
-      <HeroSection />
-      <AboutUs/>
-    </BrowserRouter>
-
-  )
+      <Hero />
+      <StatsStrip />
+      <FoodExpenseDetails />
+      <About/>
+    </div>
+  );
 }
 
-export default App
+export default App;
