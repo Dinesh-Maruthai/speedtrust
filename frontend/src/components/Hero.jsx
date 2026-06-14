@@ -1,10 +1,12 @@
 // components/Hero.jsx
 import React, { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 import childrensImage from '../assets/childrens.jpg';
 
 const Hero = () => {
   const ringsRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const rings = ringsRef.current;
@@ -17,6 +19,19 @@ const Hero = () => {
     }
   }, []);
 
+  const handleDonateClick = (e) => {
+    e.preventDefault();
+    navigate('/donate');
+  };
+
+  const handleEventsClick = (e) => {
+    e.preventDefault();
+    // Navigate to events section or page
+    const eventsSection = document.getElementById('events');
+    if (eventsSection) {
+      eventsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <section className="hero">
       {/* concentric rings */}
@@ -63,12 +78,13 @@ const Hero = () => {
 
         {/* CTA buttons */}
         <div className="hero-btns">
-          <a href="#" className="btn btn-primary">
+          <a href="/donate" className="btn btn-primary" onclick={handleDonateClick}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
               <path d="M12 8v8M8 12h8" />
             </svg>
             Donate Now
+
           </a>
           <a href="#" className="btn btn-secondary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

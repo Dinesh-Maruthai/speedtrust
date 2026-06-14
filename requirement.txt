@@ -1,5 +1,8 @@
-django,
-djangorestframework,
-razorpay,
-django-cors-headers,
 dotenv
+Django==4.2.0
+djangorestframework==3.14.0
+django-cors-headers==4.0.0
+razorpay==1.4.1
+reportlab==4.0.0
+python-decouple==3.8
+django-cors-headers==4.3.0
