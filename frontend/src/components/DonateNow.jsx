@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './DonateNow.css';
 
+
 const DonateNow = () => {
   const [selectedAmount, setSelectedAmount] = useState(null);
   const [customAmount, setCustomAmount] = useState('');
@@ -14,7 +15,7 @@ const DonateNow = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const presetAmounts = [500, 1000, 2000, 5000, 10000];
-
+  const API_URL = import.meta.env.VITE_API_URL;
   // Debug: Check if component is rendering
   console.log('DonateNow component is rendering');
 
@@ -30,7 +31,7 @@ const DonateNow = () => {
 
   const createOrder = async (donationData) => {
     try {
-      const response = await fetch('http://localhost:8000/api/payment/create-order/', {
+      const response = await fetch(`${API_URL}/api/payment/create-order/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ const DonateNow = () => {
 
   const verifyPayment = async (paymentData) => {
     try {
-      const response = await fetch('http://localhost:8000/api/payment/verify-payment/', {
+      const response = await fetch(`${API_URL}/api/payment/verify-payment/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
