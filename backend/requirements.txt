@@ -2,7 +2,7 @@ dotenv
 Django==4.2.0
 djangorestframework==3.14.0
 django-cors-headers==4.3.0
-razorpay==1.4.1
+razorpay
 # reportlab==4.0.0
 python-decouple==3.8
 gunicorn
