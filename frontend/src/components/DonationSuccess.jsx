@@ -9,6 +9,7 @@ const DonationSuccess = () => {
   const [donationDetails, setDonationDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+    const API_URL = "https://speedtrust-production.up.railway.app";
 
   useEffect(() => {
     // Get donation details from URL params or localStorage
@@ -30,7 +31,7 @@ const DonationSuccess = () => {
 
   const fetchDonationDetails = async (donationId) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/payment/donation/status/${donationId}/`);
+      const response = await fetch(`${API_URL}/api/v1/payment/donation/status/${donationId}/`);
       
       if (!response.ok) {
         throw new Error('Failed to fetch donation details');
@@ -53,7 +54,7 @@ const DonationSuccess = () => {
     if (!donationDetails) return;
     
     try {
-      window.open(`http://localhost:8000/api/v1/payment/receipt/${donationDetails.donation_id}/download/`, '_blank');
+      window.open(`${API_URL}/api/v1/payment/receipt/${donationDetails.donation_id}/download/`, '_blank');
     } catch (error) {
       console.error('Error downloading receipt:', error);
       alert('Failed to download receipt. Please contact support.');
