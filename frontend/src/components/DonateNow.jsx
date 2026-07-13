@@ -31,7 +31,7 @@ const DonateNow = () => {
 
   const createOrder = async (donationData) => {
     try {
-      const response = await fetch(`${API_URL}/api/payment/create-order/`, {
+      const response = await fetch(`/api/payment/create-order/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ const DonateNow = () => {
 
   const verifyPayment = async (paymentData) => {
     try {
-      const response = await fetch(`${API_URL}/api/payment/verify-payment/`, {
+      const response = await fetch(`/api/payment/verify-payment/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
