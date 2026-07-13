@@ -15,9 +15,7 @@ const DonateNow = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const presetAmounts = [500, 1000, 2000, 5000, 10000];
-  // const API_URL = import.meta.env.VITE_API_URL;
   const API_URL = "https://speedtrust-production.up.railway.app";
-  // Debug: Check if component is rendering
   console.log('DonateNow component is rendering');
 
   const loadRazorpayScript = () => {
