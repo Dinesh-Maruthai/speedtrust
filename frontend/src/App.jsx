@@ -13,6 +13,8 @@ import Footer from './components/Footer';
 import DonateNow from './components/DonateNow';
 import DonationSuccess from './components/DonationSuccess';
 import './App.css';
+import Events from './components/Events/Events';
+import Pinterest from './components/Events/Pinterest';
 
 function App() {
   console.log('App is rendering');
@@ -29,12 +31,15 @@ function App() {
               <AboutUs />
               <Services />
               <Projects />
+              
               <FoodExpenseDetails />
               <ContactUs />
             </>
           } />
           <Route path="/donate" element={<DonateNow />} />
           <Route path="/donation-success" element={<DonationSuccess />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/pinterest" element={<Pinterest />} />
         </Routes>
         <Footer />
       </div>

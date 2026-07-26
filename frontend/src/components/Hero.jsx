@@ -26,11 +26,7 @@ const Hero = () => {
 
   const handleEventsClick = (e) => {
     e.preventDefault();
-    // Navigate to events section or page
-    const eventsSection = document.getElementById('events');
-    if (eventsSection) {
-      eventsSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate('/events');
   };
   return (
     <section className="hero">
@@ -86,7 +82,7 @@ const Hero = () => {
             Donate Now
 
           </a>
-          <a href="#" className="btn btn-secondary">
+          <a href="/events" className="btn btn-secondary" onclick={handleEventsClick}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="4" width="18" height="18" rx="2" />
               <line x1="16" y1="2" x2="16" y2="6" />
