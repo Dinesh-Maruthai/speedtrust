@@ -1,5 +1,6 @@
 // components/DonateNow.jsx
 import React, { useState } from 'react';
+import api from '../api/axios';
 import './DonateNow.css';
 
 
@@ -15,11 +16,14 @@ const DonateNow = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const presetAmounts = [500, 1000, 2000, 5000, 10000];
-  const API_URL = "https://speedtrust-production.up.railway.app";
   console.log('DonateNow component is rendering');
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
+      if (window.Razorpay) {
+        resolve(true);
+        return;
+      }
       const script = document.createElement('script');
       script.src = 'https://checkout.razorpay.com/v1/checkout.js';
       script.onload = () => resolve(true);
@@ -30,51 +34,31 @@ const DonateNow = () => {
 
   const createOrder = async (donationData) => {
     try {
-      const response = await fetch(`${API_URL}/api/payment/create-order/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(donationData),
-      });
-
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Failed to create order');
-      }
-      
-      return data;
+      const response = await api.post('/api/payment/create-order/', donationData);
+      return response.data;
     } catch (error) {
       console.error('Order creation error:', error);
-      throw error;
+      throw error.response?.data || error;
     }
   };
 
   const verifyPayment = async (paymentData) => {
     try {
-      const response = await fetch(`${API_URL}/api/payment/verify-payment/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(paymentData),
-      });
-
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || 'Payment verification failed');
-      }
-      
-      return data;
+      const response = await api.post('/api/payment/verify-payment/', paymentData);
+      return response.data;
     } catch (error) {
       console.error('Payment verification error:', error);
-      throw error;
+      throw error.response?.data || error;
     }
   };
 
   const openRazorpayCheckout = (orderData, donationData) => {
+    if (!orderData || !orderData.key) {
+      console.error('Razorpay initialization error: orderData.key is missing or undefined:', orderData);
+      alert('Payment configuration error: Razorpay Key ID is missing from server response. Please verify backend .env settings.');
+      return;
+    }
+
     const options = {
       key: orderData.key,
       amount: donationData.amount * 100,

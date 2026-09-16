@@ -89,17 +89,24 @@ def send_donation_confirmation_email(donation):
         'status': donation.status,
     }
     
-    html_message = render_to_string('emails/donation_confirmation.html', context)
-    plain_message = f"Thank you for your donation of {donation.formatted_amount}"
+    try:
+        html_message = render_to_string('emails/donation_confirmation.html', context)
+    except Exception:
+        html_message = None
     
-    send_mail(
-        subject=subject,
-        message=plain_message,
-        from_email=settings.DEFAULT_FROM_EMAIL,
-        recipient_list=[donation.donor_email],
-        html_message=html_message,
-        fail_silently=True
-    )
+    plain_message = f"Thank you for your donation of {donation.formatted_amount} to Speed Trust. Donation ID: {donation.donation_id}"
+    
+    try:
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[donation.donor_email],
+            html_message=html_message,
+            fail_silently=True
+        )
+    except Exception:
+        pass
 
 
 def update_campaign_raised_amount(campaign_id, amount):

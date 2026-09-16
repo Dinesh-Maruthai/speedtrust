@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Event from './components/Events/Event';
 import Hero from './components/Hero';
 import StatsStrip from './components/StatsStrip';
 import AboutUs from './components/AboutUs';
@@ -12,9 +13,10 @@ import ContactUs from './components/ContactUs';
 import Footer from './components/Footer';
 import DonateNow from './components/DonateNow';
 import DonationSuccess from './components/DonationSuccess';
+import AboutDetails from './components/AboutDetails/AboutDetails';
+import DetailedCard from './components/Events/DetailedCard';
 import './App.css';
-import Events from './components/Events/Events';
-import Pinterest from './components/Events/Pinterest';
+
 
 function App() {
   console.log('App is rendering');
@@ -36,10 +38,11 @@ function App() {
               <ContactUs />
             </>
           } />
+          <Route path="/about" element={<AboutDetails />} />
           <Route path="/donate" element={<DonateNow />} />
           <Route path="/donation-success" element={<DonationSuccess />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/pinterest" element={<Pinterest />} />
+          <Route path="/events" element={<Event />} />
+          <Route path="/events/:id" element={<DetailedCard />} />
         </Routes>
         <Footer />
       </div>

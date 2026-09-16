@@ -1,0 +1,1001 @@
+/* components/AboutDetails.css */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── COMMON STYLES ── */
+.about-details-page {
+  background: var(--beige);
+  min-height: 100vh;
+  padding-top: 72px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--green);
+  text-align: center;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+.section-title em {
+  font-style: normal;
+  color: var(--lime-dark);
+}
+
+.sec-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lime-dark);
+  margin-bottom: 12px;
+}
+
+.sec-eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--lime);
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Scroll Reveal Base */
+.about-details-hero .hero-content,
+.mission-vision-grid,
+.focus-container,
+.projects-container,
+.partnerships-container,
+.impact-container,
+.building-container,
+.inkind-container,
+.financials-container,
+.bank-container,
+.contact-container,
+.closing-container {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-details-hero .hero-content.visible,
+.mission-vision-grid.visible,
+.focus-container.visible,
+.projects-container.visible,
+.partnerships-container.visible,
+.impact-container.visible,
+.building-container.visible,
+.inkind-container.visible,
+.financials-container.visible,
+.bank-container.visible,
+.contact-container.visible,
+.closing-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.d1 {
+  transition-delay: 0.08s;
+}
+.d2 {
+  transition-delay: 0.16s;
+}
+.d3 {
+  transition-delay: 0.24s;
+}
+.d4 {
+  transition-delay: 0.32s;
+}
+.d5 {
+  transition-delay: 0.40s;
+}
+.d6 {
+  transition-delay: 0.48s;
+}
+.d7 {
+  transition-delay: 0.56s;
+}
+.d8 {
+  transition-delay: 0.64s;
+}
+.d9 {
+  transition-delay: 0.72s;
+}
+.d10 {
+  transition-delay: 0.80s;
+}
+
+/* ── BACK TO HOME NAV ── */
+.about-details-nav {
+  position: fixed;
+  top: 80px;
+  left: 5%;
+  z-index: 10;
+}
+
+.back-home-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green);
+  color: var(--beige);
+  padding: 10px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(19, 50, 21, 0.2);
+}
+
+.back-home-btn svg {
+  width: 16px;
+  height: 16px;
+  transform: rotate(180deg);
+}
+
+.back-home-btn:hover {
+  background: var(--green-mid);
+  transform: translateX(-4px);
+  box-shadow: 0 6px 20px rgba(19, 50, 21, 0.3);
+}
+
+/* ── SECTION 1: HERO ── */
+.about-details-hero {
+  padding: 80px 5% 60px;
+  background: var(--beige);
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: var(--green);
+  line-height: 1.08;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  max-width: 800px;
+  margin: 0 auto 24px;
+}
+
+.hero-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 12px 24px;
+  background: var(--beige-dark);
+  border-radius: 12px;
+  display: inline-block;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+}
+
+/* ── SECTION 2: MISSION & VISION ── */
+.about-details-mission-vision {
+  padding: 60px 5%;
+  background: var(--beige-dark);
+}
+
+.mission-vision-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.mission-card,
+.vision-card {
+  background: var(--beige);
+  border-radius: 20px;
+  padding: 40px 32px;
+  border: 1px solid var(--lime);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mission-card:hover,
+.vision-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.mission-card h3,
+.vision-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.mission-card p,
+.vision-card p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-body);
+}
+
+/* ── SECTION 3: FOCUS ── */
+.about-details-focus {
+  padding: 60px 5%;
+  background: var(--beige);
+}
+
+.focus-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.focus-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.focus-card {
+  background: var(--beige-dark);
+  border-radius: 20px;
+  padding: 32px 28px;
+  text-align: center;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.focus-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--lime);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+.focus-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+
+.focus-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 12px;
+}
+
+.focus-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* ── SECTION 4: PROJECTS ── */
+.about-details-projects {
+  padding: 60px 5%;
+  background: var(--beige-dark);
+}
+
+.projects-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.project-card {
+  background: var(--beige);
+  border-radius: 20px;
+  padding: 28px 24px;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--lime);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.project-emoji {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.project-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+  line-height: 1.3;
+}
+
+.project-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--lime-dark);
+  margin-bottom: 12px;
+}
+
+.project-location svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--lime-dark);
+}
+
+.project-description {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin-bottom: 16px;
+}
+
+.project-services {
+  margin-bottom: 16px;
+}
+
+.project-services h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.project-services ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 16px;
+}
+
+.project-services li {
+  font-size: 0.8rem;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+.project-impact {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(146, 183, 117, 0.2);
+}
+
+.impact-badge {
+  display: inline-block;
+  background: var(--lime-pale);
+  color: var(--lime-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 14px;
+  border-radius: 50px;
+}
+
+/* ── SECTION 5: PARTNERSHIPS ── */
+.about-details-partnerships {
+  padding: 60px 5%;
+  background: var(--beige);
+}
+
+.partnerships-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.partnerships-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.partnership-tag {
+  background: var(--beige-dark);
+  color: var(--green);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(146, 183, 117, 0.3);
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.partnership-tag:hover {
+  background: var(--lime-pale);
+  border-color: var(--lime);
+  transform: translateY(-2px);
+}
+
+/* ── SECTION 6: IMPACT ── */
+.about-details-impact {
+  padding: 60px 5%;
+  background: var(--beige-dark);
+}
+
+.impact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.impact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--beige);
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-body);
+  border: 1px solid rgba(146, 183, 117, 0.15);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.impact-item:hover {
+  border-color: var(--lime);
+}
+
+.impact-check {
+  color: var(--lime-dark);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.impact-reach {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  padding: 16px;
+  background: var(--beige);
+  border-radius: 12px;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+}
+
+/* ── SECTION 7: BUILDING PROJECT ── */
+.about-details-building {
+  padding: 60px 5%;
+  background: var(--green);
+}
+
+.building-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.building-card {
+  background: var(--beige);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  border: 2px solid var(--lime);
+}
+
+.building-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+
+.building-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  max-width: 800px;
+  margin: 0 auto 24px;
+}
+
+.building-features {
+  text-align: left;
+  max-width: 700px;
+  margin: 0 auto 24px;
+}
+
+.building-features h4 {
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+
+.building-features ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 24px;
+}
+
+.building-features li {
+  font-size: 0.85rem;
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+.building-cost {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--lime-pale);
+  padding: 12px 28px;
+  border-radius: 12px;
+  margin-bottom: 28px;
+}
+
+.cost-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.cost-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--green);
+}
+
+.donate-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--green);
+  color: var(--beige);
+  border: none;
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.donate-cta-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.donate-cta-btn:hover {
+  background: var(--green-mid);
+  transform: translateY(-2px);
+  gap: 14px;
+  box-shadow: 0 8px 25px rgba(19, 50, 21, 0.25);
+}
+
+.donate-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── SECTION 8: IN-KIND DONATIONS ── */
+.about-details-inkind {
+  padding: 60px 5%;
+  background: var(--beige);
+}
+
+.inkind-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inkind-description {
+  text-align: center;
+  font-size: 1rem;
+  color: var(--text-body);
+  max-width: 700px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+.inkind-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.inkind-item {
+  background: var(--beige-dark);
+  padding: 10px 24px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--green);
+  border: 1px solid rgba(146, 183, 117, 0.2);
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.inkind-item:hover {
+  background: var(--lime-pale);
+  border-color: var(--lime);
+  transform: translateY(-2px);
+}
+
+/* ── SECTION 9: FINANCIALS ── */
+.about-details-financials {
+  padding: 60px 5%;
+  background: var(--beige-dark);
+}
+
+.financials-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.financials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.financial-item {
+  background: var(--beige);
+  padding: 16px 20px;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+}
+
+.financial-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.financial-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+.financials-note {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 16px;
+  background: var(--beige);
+  border-radius: 12px;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+}
+
+/* ── SECTION 10: BANK DETAILS ── */
+.about-details-bank {
+  padding: 60px 5%;
+  background: var(--beige);
+}
+
+.bank-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bank-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+
+.bank-card {
+  background: var(--beige-dark);
+  border-radius: 20px;
+  padding: 32px 28px;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.bank-card:hover {
+  transform: translateY(-4px);
+}
+
+.bank-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--lime);
+}
+
+.bank-info p {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--text-body);
+}
+
+.bank-info strong {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.bank-note {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 24px;
+  padding: 16px;
+  background: var(--beige-dark);
+  border-radius: 12px;
+  border: 1px solid rgba(146, 183, 117, 0.2);
+}
+
+/* ── SECTION 11: CONTACT ── */
+.about-details-contact {
+  padding: 60px 5%;
+  background: var(--beige-dark);
+}
+
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contact-card {
+  background: var(--green);
+  border-radius: 24px;
+  padding: 40px 36px;
+  color: var(--beige);
+  text-align: center;
+  border: 2px solid var(--lime);
+}
+
+.contact-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--lime);
+  margin-bottom: 12px;
+}
+
+.contact-address {
+  font-size: 0.95rem;
+  color: rgba(243, 232, 211, 0.8);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.contact-details p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(243, 232, 211, 0.8);
+}
+
+.contact-details a {
+  color: var(--lime);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-details a:hover {
+  color: var(--lime-light);
+  text-decoration: underline;
+}
+
+/* ── SECTION 12: CLOSING ── */
+.about-details-closing {
+  padding: 60px 5% 80px;
+  background: var(--beige);
+}
+
+.closing-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.closing-message {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-body);
+  margin-bottom: 32px;
+}
+
+.closing-tagline {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--green);
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.closing-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: transparent;
+  color: var(--green);
+  border: 2px solid var(--lime);
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.contact-cta-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.contact-cta-btn:hover {
+  background: var(--lime-pale);
+  transform: translateY(-2px);
+  gap: 14px;
+}
+
+.contact-cta-btn:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 700px) {
+  .about-details-nav {
+    top: 76px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .back-home-btn {
+    font-size: 0.75rem;
+    padding: 8px 16px;
+  }
+
+  .about-details-hero {
+    padding: 60px 5% 40px;
+    min-height: 50vh;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .mission-vision-grid,
+  .focus-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .impact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .financials-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .bank-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .building-card {
+    padding: 32px 24px;
+  }
+
+  .building-features ul {
+    grid-template-columns: 1fr;
+  }
+
+  .bank-card {
+    padding: 24px 20px;
+  }
+
+  .contact-card {
+    padding: 28px 20px;
+  }
+
+  .project-services ul {
+    grid-template-columns: 1fr;
+  }
+
+  .closing-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .donate-cta-btn,
+  .contact-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .impact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .financials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-meta {
+    font-size: 0.7rem;
+    padding: 10px 16px;
+  }
+
+  .cost-amount {
+    font-size: 1.4rem;
+  }
+}

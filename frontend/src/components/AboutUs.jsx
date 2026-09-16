@@ -1,8 +1,10 @@
 // components/AboutUs.jsx
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './AboutUs.css';
 
 const AboutUs = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState({
     reveal: false,
     revealLeft: false,
@@ -21,10 +23,10 @@ const AboutUs = () => {
     titleHighlight: 'Are',
     
     // Full name badge
-    fullName: 'Social Public Education & Economic Development Trust',
+    fullName: 'Enabling Lives through Education, Care and Inclusion.',
     
     // Main description
-    description: `What started with just a handful of children has now grown into a full-fledged residential school and rehabilitation centre. Over the years, SPEED TRUST has reached out to thousands of children through its free education programs, skill-building initiatives, and special care for mentally challenged children.`,
+    description: `Social Public Education and Economic Development Trust (SPEED TRUST), Kallakurichi, is a charitable non-profit organization working for the education, welfare, rehabilitation, and economic development of tribal children, rural poor families, school dropouts, and persons with intellectual and developmental disabilities in Tamil Nadu.`,
     
     // Pillars/Highlights
     pillars: [
@@ -50,7 +52,7 @@ const AboutUs = () => {
     
     // Button
     buttonText: 'Read More About Us',
-    buttonLink: '#',
+    buttonLink: '/about',
     
     // Image section
     imagePlaceholder: true,
@@ -118,8 +120,7 @@ const AboutUs = () => {
 
   const handleReadMore = (e) => {
     e.preventDefault();
-    console.log('Read More clicked - can navigate to about page or open modal');
-    // Add your navigation or modal logic here
+    navigate('/about');
   };
 
   return (

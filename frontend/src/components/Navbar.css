@@ -48,6 +48,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 14px;
   transition: transform 0.3s ease, border-radius 0.3s ease;
 }
 
