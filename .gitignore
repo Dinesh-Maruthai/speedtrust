@@ -1,12 +1,15 @@
 # Python
 __pycache__/
+/backend/__pycache__/
 *.py[cod]
 venv/
 db.sqlite3
+venv2/
 
 # Environment variables
 .env
 .env.*
+
 
 # Node / Front‑end
 node_modules/
@@ -30,3 +33,4 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
+.elasticbeanstalk/
