@@ -7,6 +7,9 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from decimal import Decimal
 import json
+from django.http import HttpResponse
+from .utils import generate_payment_receipt_pdf
+
 
 from .models import Donation, DonationCampaign, DonationAllocation, WebhookLog
 from .serializers import (
@@ -162,45 +165,45 @@ def verify_donation_payment(request):
             'error': 'Invalid payment signature'
         }, status=status.HTTP_400_BAD_REQUEST)
     
-    # Fetch payment details from Razorpay
+    # Signature is already verified above. Proceed to mark payment successful.
+    # Fetch additional payment details from Razorpay (optional, non-blocking)
     try:
-        payment_details = razorpay_client.fetch_payment(data['razorpay_payment_id'])
-        
-        # Update donation record
-        donation.mark_as_success(
-            payment_id=data['razorpay_payment_id'],
-            signature=data['razorpay_signature']
-        )
-        
-        # Generate tax receipt number
-        donation.generate_tax_receipt()
-        
-        # Update campaign raised amount if allocated
+        razorpay_client.fetch_payment(data['razorpay_payment_id'])
+    except Exception as fetch_err:
+        # Not fatal — signature already verified. Log and continue.
+        print(f"[INFO] Could not fetch Razorpay payment details (non-fatal): {fetch_err}")
+
+    # Mark donation as successful
+    donation.mark_as_success(
+        payment_id=data['razorpay_payment_id'],
+        signature=data['razorpay_signature']
+    )
+
+    # Generate tax receipt number
+    donation.generate_tax_receipt()
+
+    # Update campaign raised amount if allocated
+    try:
         allocations = donation.allocations.all()
         for allocation in allocations:
             update_campaign_raised_amount(allocation.campaign.id, donation.amount)
-        
-        # Send confirmation email
+    except Exception as campaign_err:
+        print(f"[INFO] Campaign update failed (non-fatal): {campaign_err}")
+
+    # Send confirmation email with receipt (non-blocking)
+    try:
         send_donation_confirmation_email(donation)
-        
-        return Response({
-            'success': True,
-            'message': 'Payment verified successfully',
-            'donation_id': donation.donation_id,
-            'amount': donation.formatted_amount,
-            'status': donation.status,
-            'tax_receipt_number': donation.tax_receipt_number
-        }, status=status.HTTP_200_OK)
-        
-    except Exception as e:
-        donation.status = 'failed'
-        donation.failure_reason = str(e)
-        donation.save()
-        
-        return Response({
-            'error': 'Failed to verify payment',
-            'details': str(e)
-        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    except Exception as email_err:
+        print(f"[INFO] Email send failed (non-fatal): {email_err}")
+
+    return Response({
+        'success': True,
+        'message': 'Payment verified successfully',
+        'donation_id': donation.donation_id,
+        'amount': donation.formatted_amount,
+        'status': donation.status,
+        'tax_receipt_number': donation.tax_receipt_number
+    }, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -323,32 +326,41 @@ def razorpay_webhook(request):
 @api_view(['GET'])
 def download_tax_receipt(request, donation_id):
     """
-    Generate and download tax receipt PDF
+    Generate and download payment receipt PDF
+    using the existing receipt generation method.
     """
     try:
-        donation = Donation.objects.get(donation_id=donation_id, status='success')
-        
-        # Generate PDF (implement using reportlab or similar)
-        # This is a placeholder - implement actual PDF generation
-        from django.http import HttpResponse
-        from reportlab.lib.pagesizes import letter
-        from reportlab.pdfgen import canvas
-        
-        response = HttpResponse(content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="tax_receipt_{donation.donation_id}.pdf"'
-        
-        # Create PDF
-        p = canvas.Canvas(response, pagesize=letter)
-        p.drawString(100, 750, f"SPEED TRUST - TAX RECEIPT")
-        p.drawString(100, 730, f"Receipt No: {donation.tax_receipt_number}")
-        p.drawString(100, 710, f"Donor Name: {donation.display_name}")
-        p.drawString(100, 690, f"Amount: {donation.formatted_amount}")
-        p.drawString(100, 670, f"Date: {donation.created_at.strftime('%Y-%m-%d')}")
-        p.drawString(100, 650, "80G Certificate Number: AAITS1234F/2024")
-        p.showPage()
-        p.save()
-        
+        donation = Donation.objects.get(
+            donation_id=donation_id,
+            status='success'
+        )
+
+        # Generate receipt PDF
+        pdf_content = generate_payment_receipt_pdf(donation)
+
+        # Create PDF response
+        response = HttpResponse(
+            pdf_content,
+            content_type='application/pdf'
+        )
+
+        response['Content-Disposition'] = (
+            f'attachment; filename="payment_receipt_{donation.donation_id}.pdf"'
+        )
+
         return response
-        
+
     except Donation.DoesNotExist:
-        return Response({'error': 'Donation not found'}, status=status.HTTP_404_NOT_FOUND)
+        return Response(
+            {'error': 'Donation not found'},
+            status=status.HTTP_404_NOT_FOUND
+        )
+
+    except Exception as e:
+        return Response(
+            {
+                'error': 'Failed to generate payment receipt',
+                'details': str(e)
+            },
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

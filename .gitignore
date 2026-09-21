@@ -3,10 +3,12 @@ __pycache__/
 *.py[cod]
 venv/
 db.sqlite3
+venv2/
 
 # Environment variables
 .env
 .env.*
+
 
 # Node / Front‑end
 node_modules/
