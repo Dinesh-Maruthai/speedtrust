@@ -30,7 +30,7 @@
   overflow-x: hidden;
 }
 
-.projects-container {
+.projects-inner-container {
   max-width: 1200px;
   margin: 0 auto;
 }

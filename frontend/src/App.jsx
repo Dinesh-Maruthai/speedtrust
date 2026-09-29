@@ -32,9 +32,9 @@ function App() {
               <StatsStrip />
               <AboutUs />
               <Services />
-              <Projects />
               
               <FoodExpenseDetails />
+              <Projects />
               <ContactUs />
             </>
           } />

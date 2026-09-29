@@ -3,17 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import './Projects.css';
 
 const Projects = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  // Projects data stored in state for easy modification
   const [projectsData, setProjectsData] = useState({
     sectionLabel: 'Our Impact',
     title: 'Featured',
     titleHighlight: 'Project',
     description: 'Real-world initiatives that bring lasting change to the communities we serve.',
-    
-    // Featured project
+
     featuredProject: {
       id: 1,
       title: 'Borewell Water Facility at PCDS Global School',
@@ -22,7 +19,7 @@ const Projects = () => {
         type: 'placeholder', // Can be 'placeholder', 'url'
         value: '',
         alt: 'Borewell Water Facility at PCDS Global School',
-        url: null // Add image URL when available
+        url: "/borewellProgram.jpg"// Add image URL when available
       },
       description: 'SPEED TRUST has established a vital borewell water facility at PCDS Global School, Kalvarayan Hills — bringing clean, reliable water access directly to 250 tribal children. The project covers borewell drilling, motor pump installation, electrical wiring, and safety systems, addressing long-standing challenges of water scarcity and contamination at the school.',
       impactPoints: [
@@ -39,7 +36,7 @@ const Projects = () => {
       readMoreLink: '#',
       readMoreText: 'Learn More About This Project'
     },
-    
+
     // Other projects (can be expanded)
     otherProjects: [
       {
@@ -66,16 +63,19 @@ const Projects = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.disconnect();
+            entry.target.classList.add('visible');
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'none';
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      const revealElements = sectionRef.current.querySelectorAll('.reveal-el');
+      revealElements.forEach((el) => observer.observe(el));
     }
 
     return () => observer.disconnect();
@@ -146,29 +146,29 @@ const Projects = () => {
 
   return (
     <section className="projects-section" ref={sectionRef}>
-      <div className="projects-container">
+      <div className="projects-inner-container">
         {/* Section Header */}
         <div className="projects-header">
-          <div className={`sec-eyebrow ${isVisible ? 'visible' : ''}`}>
+          <div className="sec-eyebrow reveal-el">
             {projectsData.sectionLabel}
           </div>
-          <h2 className={`projects-title ${isVisible ? 'visible d1' : ''}`}>
+          <h2 className="projects-title reveal-el d1">
             {projectsData.title} <em>{projectsData.titleHighlight}</em>
           </h2>
-          <p className={`projects-description ${isVisible ? 'visible d2' : ''}`}>
+          <p className="projects-description reveal-el d2">
             {projectsData.description}
           </p>
         </div>
 
         {/* Featured Project Card */}
-        <div className={`featured-project ${isVisible ? 'visible' : ''}`}>
+        <div className="featured-project reveal-el">
           <div className="featured-project-grid">
             {/* Left Side - Image */}
             <div className="featured-project-image-wrapper">
               <div className="featured-project-image">
-                {featured.image.type === 'url' && featured.image.url ? (
-                  <img 
-                    src={featured.image.url} 
+                { featured.image.url ? (
+                  <img
+                    src={featured.image.url}
                     alt={featured.image.alt}
                   />
                 ) : (
@@ -182,7 +182,7 @@ const Projects = () => {
                   </div>
                 )}
               </div>
-              
+
               {/* Floating Stats Badges */}
               <div className="floating-stats">
                 <div className="stat-badge stat-badge-1">
@@ -200,11 +200,11 @@ const Projects = () => {
             <div className="featured-project-content">
               <div className="project-badge">FEATURED INITIATIVE</div>
               <h3 className="featured-project-title">{featured.title}</h3>
-              
+
               <div className="project-location">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
                 </svg>
                 <span>{featured.location}</span>
               </div>
@@ -215,8 +215,8 @@ const Projects = () => {
               <div className="impact-section">
                 <h4 className="impact-title">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
-                    <polyline points="22 4 12 14.01 9 11.01"/>
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
                   </svg>
                   Key Impact Areas
                 </h4>
@@ -231,14 +231,14 @@ const Projects = () => {
               </div>
 
               {/* Read More Button */}
-              <a 
+              <a
                 href={featured.readMoreLink}
                 className="project-readmore-btn"
                 onClick={(e) => handleReadMore(featured.id, featured.title, e)}
               >
                 {featured.readMoreText}
                 <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M3 8h10M9 4l4 4-4 4"/>
+                  <path d="M3 8h10M9 4l4 4-4 4" />
                 </svg>
               </a>
             </div>
@@ -247,14 +247,14 @@ const Projects = () => {
 
         {/* Other Projects Section */}
         {projectsData.otherProjects.length > 0 && (
-          <div className={`other-projects ${isVisible ? 'visible' : ''}`}>
+          <div className="other-projects reveal-el">
             <div className="other-projects-header">
               <h3>More Initiatives</h3>
               <div className="other-projects-line"></div>
             </div>
             <div className="other-projects-grid">
               {projectsData.otherProjects.map((project, index) => (
-                <div 
+                <div
                   key={project.id}
                   className={`other-project-card reveal-delay-${index + 1}`}
                 >
@@ -263,8 +263,8 @@ const Projects = () => {
                     <h4>{project.title}</h4>
                     <div className="other-project-location">
                       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                        <circle cx="12" cy="10" r="3"/>
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                        <circle cx="12" cy="10" r="3" />
                       </svg>
                       <span>{project.location}</span>
                     </div>
@@ -272,14 +272,14 @@ const Projects = () => {
                     <div className="other-project-impact">
                       <span className="impact-tag">{project.impact}</span>
                     </div>
-                    <a 
+                    <a
                       href="#"
                       className="other-project-link"
                       onClick={(e) => handleReadMore(project.id, project.title, e)}
                     >
                       Learn More
                       <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                        <path d="M3 8h10M9 4l4 4-4 4" />
                       </svg>
                     </a>
                   </div>
