@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Event.css';
 import { eventsData } from './eventsData';
@@ -23,6 +23,24 @@ const ArrowIcon = () => (
 // ─── Component ────────────────────────────────────────────────────────────────
 const Event = () => {
   const navigate = useNavigate();
+  const [events, setEvents] = useState(eventsData);
+
+  useEffect(() => {
+    fetch('/api/payment/public/events/')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (Array.isArray(data) && data.length > 0) {
+          // Normalize API fields with static format
+          const formatted = data.map(item => ({
+            ...item,
+            thumbnail: item.thumbnail_url || item.thumbnail || (eventsData[0] && eventsData[0].thumbnail),
+            donorInitials: item.donor_initials || item.donorInitials || 'ST',
+          }));
+          setEvents(formatted);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleReadMore = (id) => navigate(`/events/${id}`);
 
@@ -47,11 +65,11 @@ const Event = () => {
       <div className="events-section">
         <div className="events-section-header">
           <h2>Upcoming &amp; Past Events</h2>
-          <span className="events-count-badge">{eventsData.length} Events</span>
+          <span className="events-count-badge">{events.length} Events</span>
         </div>
 
         <div className="events-grid">
-          {eventsData.map((ev) => (
+          {events.map((ev) => (
             <article key={ev.id} className="event-card">
               {/* Image */}
               <div className="event-thumbnail-wrap">

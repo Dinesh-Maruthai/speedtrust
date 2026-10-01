@@ -7,6 +7,8 @@ from . import views
 router = DefaultRouter()
 router.register(r'donations', views.DonationViewSet, basename='donation')
 router.register(r'campaigns', views.DonationCampaignViewSet, basename='campaign')
+router.register(r'admin/events', views.EventViewSet, basename='admin-event')
+router.register(r'admin/gallery', views.GalleryItemViewSet, basename='admin-gallery')
 
 # App-specific URL patterns
 app_name = 'donations'
@@ -30,4 +32,11 @@ urlpatterns = [
     # Webhook and receipt
     path('webhook/razorpay/', views.razorpay_webhook, name='razorpay-webhook'),
     path('download-receipt/<uuid:donation_id>/', views.download_tax_receipt, name='download-receipt'),
-]
+
+    # Admin stats
+    path('admin/stats/', views.admin_stats, name='admin-stats'),
+
+    # Public CMS endpoints
+    path('public/events/', views.public_events, name='public-events'),
+    path('public/gallery/', views.public_gallery, name='public-gallery'),
+]

@@ -1,6 +1,6 @@
 # serializers.py
 from rest_framework import serializers
-from .models import Donation, DonationCampaign, DonationAllocation, TaxReceipt
+from .models import Donation, DonationCampaign, DonationAllocation, TaxReceipt, Event, GalleryItem
 
 class DonationSerializer(serializers.ModelSerializer):
     """
@@ -124,3 +124,43 @@ class DonationStatusSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donation
         fields = ['donation_id', 'status', 'amount', 'created_at', 'payment_completed_at']
+
+
+class EventSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Event CMS model
+    """
+    thumbnail_url = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Event
+        fields = [
+            'id', 'title', 'category', 'description', 'details',
+            'date', 'location', 'beneficiaries', 'volunteers',
+            'donor', 'donor_initials', 'thumbnail', 'thumbnail_url',
+            'is_published', 'created_at', 'updated_at'
+        ]
+        read_only_fields = ['id', 'created_at', 'updated_at', 'thumbnail_url']
+
+    def get_thumbnail_url(self, obj):
+        request = self.context.get('request')
+        if obj.thumbnail and request:
+            return request.build_absolute_uri(obj.thumbnail.url)
+        return obj.thumbnail_url
+
+
+class GalleryItemSerializer(serializers.ModelSerializer):
+    """
+    Serializer for GalleryItem CMS model
+    """
+    image_src = serializers.ReadOnlyField()
+
+    class Meta:
+        model = GalleryItem
+        fields = [
+            'id', 'title', 'category', 'aspect', 'image', 'image_url', 'image_src',
+            'date', 'location', 'summary', 'story', 'impact',
+            'likes', 'author', 'author_role', 'donor_support', 'tags',
+            'is_published', 'created_at', 'updated_at'
+        ]
+        read_only_fields = ['id', 'created_at', 'updated_at', 'image_src']

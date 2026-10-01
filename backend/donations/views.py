@@ -1,21 +1,25 @@
 # views.py
 from rest_framework import status, generics, viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view, action, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from decimal import Decimal
 import json
 from django.http import HttpResponse
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
+from django.db.models import Sum
 from .utils import generate_payment_receipt_pdf
 
 
-from .models import Donation, DonationCampaign, DonationAllocation, WebhookLog
+from .models import Donation, DonationCampaign, DonationAllocation, WebhookLog, Event, GalleryItem
 from .serializers import (
     DonationSerializer, CreateOrderSerializer, PaymentVerificationSerializer,
     DonationCampaignSerializer, DonationAllocationSerializer, 
-    TaxReceiptSerializer, DonationStatusSerializer
+    TaxReceiptSerializer, DonationStatusSerializer,
+    EventSerializer, GalleryItemSerializer
 )
 from .utils import RazorpayClient, generate_tax_receipt_number, send_donation_confirmation_email, update_campaign_raised_amount
 
@@ -44,13 +48,19 @@ class DonationCampaignViewSet(viewsets.ModelViewSet):
     """
     ViewSet for Donation Campaigns
     """
-    queryset = DonationCampaign.objects.filter(is_active=True)
+    queryset = DonationCampaign.objects.all()
     serializer_class = DonationCampaignSerializer
     permission_classes = [AllowAny]
     lookup_field = 'slug'
 
+    def get_queryset(self):
+        if self.request.user and self.request.user.is_authenticated:
+            return DonationCampaign.objects.all()
+        return DonationCampaign.objects.filter(is_active=True)
+
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def create_donation_order(request):
     """
     Create Razorpay order for donation
@@ -127,6 +137,7 @@ def create_donation_order(request):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def verify_donation_payment(request):
     """
     Verify Razorpay payment signature
@@ -207,6 +218,7 @@ def verify_donation_payment(request):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def check_donation_status(request, donation_id):
     """
     Check donation status by donation ID
@@ -222,6 +234,7 @@ def check_donation_status(request, donation_id):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_active_campaigns(request):
     """
     Get all active donation campaigns
@@ -239,6 +252,7 @@ def get_active_campaigns(request):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_campaign_details(request, slug):
     """
     Get campaign details by slug
@@ -249,6 +263,7 @@ def get_campaign_details(request, slug):
 
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def get_donation_history(request, email):
     """
     Get donation history for a donor by email
@@ -267,6 +282,7 @@ def get_donation_history(request, email):
 
 
 @api_view(['POST'])
+@permission_classes([AllowAny])
 def razorpay_webhook(request):
     """
     Webhook endpoint for Razorpay events
@@ -316,14 +332,42 @@ def razorpay_webhook(request):
         webhook_log.save()
         
         return Response({'status': 'success'}, status=status.HTTP_200_OK)
-        
     except Exception as e:
         webhook_log.error_message = str(e)
         webhook_log.save()
         return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def admin_stats(request):
+    from .serializers import DonationSerializer
+    total_donations = Donation.objects.filter(status='success').count()
+    pending_donations = Donation.objects.filter(status='pending').count()
+    total_amount = Donation.objects.filter(status='success').aggregate(sum=Sum('amount'))['sum'] or 0
+    active_campaigns = DonationCampaign.objects.filter(is_active=True).count()
+    recent = Donation.objects.order_by('-created_at')[:10]
+    recent_data = []
+    for d in recent:
+        recent_data.append({
+            'id': str(d.donation_id),
+            'name': d.donor_name if not d.is_anonymous else 'Anonymous',
+            'email': d.donor_email,
+            'amount': float(d.amount),
+            'status': d.status,
+            'date': d.created_at.strftime('%d %b %Y, %I:%M %p'),
+        })
+    return Response({
+        'total_donations': total_donations,
+        'pending_donations': pending_donations,
+        'total_amount': float(total_amount),
+        'active_campaigns': active_campaigns,
+        'recent_donations': recent_data,
+    })
+
+
 
 @api_view(['GET'])
+@permission_classes([AllowAny])
 def download_tax_receipt(request, donation_id):
     """
     Generate and download payment receipt PDF
@@ -364,3 +408,57 @@ def download_tax_receipt(request, donation_id):
             },
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+
+# ──────────────── Events CMS ────────────────
+
+class EventViewSet(viewsets.ModelViewSet):
+    """
+    Admin: full CRUD for Event model.
+    Public GET uses a separate read-only view below.
+    """
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_context(self):
+        ctx = super().get_serializer_context()
+        ctx['request'] = self.request
+        return ctx
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def public_events(request):
+    """Public: returns only published events."""
+    events = Event.objects.filter(is_published=True)
+    serializer = EventSerializer(events, many=True, context={'request': request})
+    return Response(serializer.data)
+
+
+# ──────────────── Gallery CMS ────────────────
+
+class GalleryItemViewSet(viewsets.ModelViewSet):
+    """
+    Admin: full CRUD for GalleryItem model.
+    """
+    queryset = GalleryItem.objects.all()
+    serializer_class = GalleryItemSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_context(self):
+        ctx = super().get_serializer_context()
+        ctx['request'] = self.request
+        return ctx
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def public_gallery(request):
+    """Public: returns only published gallery items."""
+    category = request.query_params.get('category')
+    items = GalleryItem.objects.filter(is_published=True)
+    if category and category != 'all':
+        items = items.filter(category=category)
+    serializer = GalleryItemSerializer(items, many=True, context={'request': request})
+    return Response(serializer.data)

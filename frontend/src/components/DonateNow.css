@@ -1,5 +1,7 @@
 /* components/DonateNow.css */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -423,20 +425,20 @@
   .donate-section {
     padding: 80px 5% 60px;
   }
-  
+
   .donation-form-container {
     padding: 24px;
   }
-  
+
   .amount-options {
     gap: 10px;
   }
-  
+
   .amount-btn {
     padding: 10px 16px;
     font-size: 0.9rem;
   }
-  
+
   .impact-stats {
     grid-template-columns: 1fr;
   }
@@ -446,7 +448,7 @@
   .amount-options {
     justify-content: center;
   }
-  
+
   .donation-type {
     justify-content: center;
   }

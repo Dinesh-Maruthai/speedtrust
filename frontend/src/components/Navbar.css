@@ -1,124 +1,141 @@
 /* components/Navbar.css */
-.header {
-  position: sticky;
+.navbar {
+  position: fixed;
   top: 0;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--line);
-}
-
-.nav {
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 78px;
-  gap: 24px;
+  padding: 0 5%;
+  height: 72px;
+  background: rgba(243, 232, 211, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1.5px solid var(--lime);
+  transition: all 0.3s ease;
+  animation: slideInDown 0.6s ease both;
 }
 
-.logo {
+.navbar-scrolled {
+  background: rgba(243, 232, 211, 0.95);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: -.02em;
+  gap: 10px;
+  text-decoration: none;
 }
 
-.logo-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--primary), #60a5fa);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 6px 14px rgba(37,99,235,.3);
-  overflow: hidden;
-}
-
-.logo small {
-  display: block;
-  font-size: .68rem;
-  font-weight: 600;
-  color: var(--muted);
-  letter-spacing: .06em;
-  margin-top: -3px;
-}
-
-.menu {
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--green);
+  border-radius: 10px;
   display: flex;
-  gap: 34px;
-  font-weight: 600;
-  font-size: .95rem;
-  color: #334155;
+  align-items: center;
+  justify-content: center;
+  padding-right: 14px;
+  transition: transform 0.3s ease, border-radius 0.3s ease;
 }
 
-.menu a {
-  position: relative;
-  padding: 6px 0;
-  transition: .2s;
+.nav-logo:hover .logo-icon {
+  transform: scale(1.05) rotate(5deg);
+  border-radius: 12px;
 }
 
-.menu a:hover {
-  color: var(--primary);
+.logo-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: var(--lime);
 }
 
-.menu a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 0;
-  height: 2px;
-  background: var(--primary);
-  transition: .25s;
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: -0.5px;
 }
 
-.menu a:hover::after {
-  width: 100%;
+.logo-text span {
+  color: var(--lime-dark);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links li {
+  opacity: 0;
+  animation: navItemFadeIn 0.4s ease forwards;
+}
+
+.nav-links li:nth-child(1) { animation-delay: 0.1s; }
+.nav-links li:nth-child(2) { animation-delay: 0.2s; }
+.nav-links li:nth-child(3) { animation-delay: 0.3s; }
+.nav-links li:nth-child(4) { animation-delay: 0.4s; }
+.nav-links li:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes navItemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-body);
+  letter-spacing: 0.02em;
+  transition: color 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.nav-links a:hover {
+  color: var(--green);
+  transform: translateY(-2px);
 }
 
 .nav-cta {
-  display: flex;
-  gap: 10px;
+  background: var(--green);
+  color: var(--beige) !important;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-weight: 600 !important;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
 }
 
-.burger {
-  display: none;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  padding: 8px;
+.nav-cta:hover {
+  background: var(--green-mid) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(19, 50, 21, 0.3);
 }
 
-.burger span {
-  display: block;
-  width: 24px;
-  height: 2.5px;
-  background: var(--ink);
-  margin: 5px 0;
-  border-radius: 2px;
-  transition: .25s;
-}
-
-@media(max-width: 860px) {
-  .menu, .nav-cta .btn-outline {
+@media (max-width: 700px) {
+  .nav-links {
     display: none;
-  }
-  .burger {
-    display: block;
-  }
-  .menu.open {
-    display: flex;
-    position: absolute;
-    top: 78px;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background: #fff;
-    padding: 22px 24px;
-    gap: 18px;
-    border-bottom: 1px solid var(--line);
-    box-shadow: var(--shadow);
   }
 }

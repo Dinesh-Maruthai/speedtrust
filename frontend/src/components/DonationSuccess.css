@@ -1,5 +1,7 @@
 /* components/DonationSuccess.css */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -48,6 +50,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -72,6 +75,7 @@
     opacity: 0;
     transform: translateY(40px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -100,9 +104,11 @@
     transform: scale(0);
     opacity: 0;
   }
+
   50% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
     opacity: 1;
@@ -119,7 +125,7 @@
   letter-spacing: -0.5px;
 }
 
-.success-container > p {
+.success-container>p {
   font-size: 1rem;
   color: var(--text-muted);
   margin-bottom: 32px;
@@ -221,7 +227,8 @@
   flex-wrap: wrap;
 }
 
-.home-btn, .download-btn {
+.home-btn,
+.download-btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -346,35 +353,36 @@
   .success-section {
     padding: 80px 5% 60px;
   }
-  
+
   .success-container {
     padding: 32px 24px;
   }
-  
+
   .success-icon {
     width: 65px;
     height: 65px;
     font-size: 38px;
   }
-  
+
   .success-container h1 {
     font-size: 1.6rem;
   }
-  
+
   .donation-details p strong {
     width: 100%;
     margin-bottom: 4px;
   }
-  
+
   .donation-details p {
     flex-direction: column;
   }
-  
+
   .success-buttons {
     flex-direction: column;
   }
-  
-  .home-btn, .download-btn {
+
+  .home-btn,
+  .download-btn {
     justify-content: center;
   }
 }
@@ -383,28 +391,29 @@
   .success-container {
     padding: 28px 20px;
   }
-  
+
   .success-icon {
     width: 55px;
     height: 55px;
     font-size: 32px;
   }
-  
+
   .success-container h1 {
     font-size: 1.4rem;
   }
-  
+
   .donation-details {
     padding: 18px;
   }
-  
+
   .tax-info {
     padding: 18px;
   }
 }
 
 /* Animation for elements */
-.donation-details, .tax-info {
+.donation-details,
+.tax-info {
   animation: fadeInUp 0.5s ease forwards;
   opacity: 0;
 }
@@ -427,6 +436,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -448,6 +458,7 @@
     transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
+
   100% {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0;
@@ -456,22 +467,23 @@
 
 /* Print styles for receipt */
 @media print {
+
   .success-section::before,
   .success-buttons,
   .back-to-top {
     display: none;
   }
-  
+
   .success-container {
     box-shadow: none;
     padding: 20px;
   }
-  
+
   .tax-info {
     background: var(--beige-dark);
     border: 1px solid var(--lime);
   }
-  
+
   .tax-info p {
     color: var(--text-body);
   }

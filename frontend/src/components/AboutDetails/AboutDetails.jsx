@@ -25,12 +25,12 @@ const AboutDetails = () => {
     // Focus Areas
     focusAreas: [
       {
-        icon: '🧒',
+        icon: '',
         title: 'Care for Children with Disabilities',
         description: 'Providing free and comprehensive care, education, rehabilitation, and support to children and adults with intellectual and developmental disabilities.'
       },
       {
-        icon: '🏫',
+        icon: '',
         title: 'Tribal Children Education',
         description: 'Providing free, quality residential education and essential support to vulnerable tribal children in the Kalvarayan Hills and other rural areas of Kallakurichi District.'
       }
@@ -55,7 +55,7 @@ const AboutDetails = () => {
           'Overall development and child protection support'
         ],
         impact: '~380 tribal children supported annually',
-        emoji: '📚'
+        emoji: ''
       },
       {
         id: 2,
@@ -75,7 +75,7 @@ const AboutDetails = () => {
           'Guidance toward daily living and independence'
         ],
         impact: '~40 inmates served annually',
-        emoji: '🧩'
+        emoji: ''
       },
       {
         id: 3,
@@ -91,7 +91,7 @@ const AboutDetails = () => {
           'Other livelihood-oriented activities'
         ],
         impact: 'Vocational training for adults with disabilities',
-        emoji: '🛠️'
+        emoji: ''
       },
       {
         id: 4,
@@ -108,7 +108,7 @@ const AboutDetails = () => {
           'Assistance enrolling in regular schools'
         ],
         impact: '~1,400 school-dropout children benefited (2010–2020) · ~100 children supported per year',
-        emoji: '🎓'
+        emoji: ''
       }
     ],
 
@@ -284,12 +284,12 @@ const AboutDetails = () => {
       >
         <div className={`mission-vision-grid ${visibleSections['mission-vision'] ? 'visible' : ''}`}>
           <div className="mission-card">
-            <div className="card-icon">🎯</div>
+            <div className="card-icon"></div>
             <h3>Our Mission</h3>
             <p>{aboutDetailsData.missionVision.mission}</p>
           </div>
           <div className="vision-card">
-            <div className="card-icon">👁️</div>
+            <div className="card-icon"></div>
             <h3>Our Vision</h3>
             <p>{aboutDetailsData.missionVision.vision}</p>
           </div>
@@ -348,7 +348,7 @@ const AboutDetails = () => {
                   </ul>
                 </div>
                 <div className="project-impact">
-                  <span className="impact-badge">📊 {project.impact}</span>
+                  <span className="impact-badge">{project.impact}</span>
                 </div>
               </div>
             ))}
@@ -499,7 +499,7 @@ const AboutDetails = () => {
               </div>
             </div>
             <div className="bank-card international">
-              <h3>🌍 International Donors (FCRA)</h3>
+              <h3> International Donors (FCRA)</h3>
               <div className="bank-info">
                 <p><strong>Bank Name:</strong> {aboutDetailsData.bankDetails.international.bankName}</p>
                 <p><strong>Branch:</strong> {aboutDetailsData.bankDetails.international.branch}</p>

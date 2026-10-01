@@ -202,3 +202,101 @@ class WebhookLog(models.Model):
     
     def __str__(self):
         return f"{self.event_type} - {self.created_at}"
+
+
+class Event(models.Model):
+    """
+    CMS Model for Events shown on the public events page
+    """
+    CATEGORY_CHOICES = [
+        ('Nutrition', 'Nutrition'),
+        ('Education', 'Education'),
+        ('Healthcare', 'Healthcare'),
+        ('Community', 'Community'),
+        ('Sports', 'Sports'),
+        ('Celebrations', 'Celebrations'),
+        ('Arts', 'Arts'),
+    ]
+
+    title = models.CharField(max_length=255)
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default='Community')
+    description = models.TextField()
+    details = models.TextField(blank=True)
+    date = models.CharField(max_length=50)          # e.g. "Oct 12, 2024"
+    location = models.CharField(max_length=255)
+    beneficiaries = models.CharField(max_length=100, blank=True)
+    volunteers = models.CharField(max_length=100, blank=True)
+    donor = models.CharField(max_length=100, blank=True)
+    donor_initials = models.CharField(max_length=5, blank=True)
+    thumbnail = models.ImageField(upload_to='events/', blank=True, null=True)
+    is_published = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Event'
+        verbose_name_plural = 'Events'
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def thumbnail_url(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        return None
+
+
+class GalleryItem(models.Model):
+    """
+    CMS Model for Gallery items shown on the public gallery page
+    """
+    CATEGORY_CHOICES = [
+        ('education', 'Education & Learning'),
+        ('nutrition', 'Nutrition & Daily Meals'),
+        ('arts', 'Arts & Creativity'),
+        ('sports', 'Sports & Play'),
+        ('celebrations', 'Celebrations & Festivals'),
+        ('healthcare', 'Healthcare & Wellness'),
+        ('community', 'Community & Outreach'),
+    ]
+
+    ASPECT_CHOICES = [
+        ('tall', 'Tall'),
+        ('wide', 'Wide'),
+        ('square', 'Square'),
+    ]
+
+    title = models.CharField(max_length=255)
+    category = models.CharField(max_length=30, choices=CATEGORY_CHOICES, default='community')
+    aspect = models.CharField(max_length=10, choices=ASPECT_CHOICES, default='square')
+    image = models.ImageField(upload_to='gallery/', blank=True, null=True)
+    image_url = models.URLField(blank=True, null=True)   # fallback external URL
+    date = models.CharField(max_length=50, blank=True)
+    location = models.CharField(max_length=255, blank=True)
+    summary = models.TextField(blank=True)
+    story = models.TextField(blank=True)
+    impact = models.CharField(max_length=255, blank=True)
+    likes = models.PositiveIntegerField(default=0)
+    author = models.CharField(max_length=100, blank=True)
+    author_role = models.CharField(max_length=100, blank=True)
+    donor_support = models.CharField(max_length=100, blank=True)
+    tags = models.JSONField(default=list, blank=True)
+    is_published = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Gallery Item'
+        verbose_name_plural = 'Gallery Items'
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def image_src(self):
+        if self.image:
+            return self.image.url
+        return self.image_url or ''

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # Third party apps
     'corsheaders',  # ADD THIS - for CORS support
     'rest_framework',  # for REST API
+    'rest_framework_simplejwt',  # JWT authentication
     
     # Local apps
     'donations',
@@ -179,8 +180,11 @@ RAZORPAY_WEBHOOK_SECRET = os.environ.get('RAZORPAY_WEBHOOK_SECRET', 'your_webhoo
 
 # REST Framework settings
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
