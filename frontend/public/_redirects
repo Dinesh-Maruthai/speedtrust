@@ -1,1 +1,3 @@
-/*   /index.html   200
+/api/* http://speedtrust-env.eba-4m3qgrx3.us-east-1.elasticbeanstalk.com/api/:splat 200
+/media/* http://speedtrust-env.eba-4m3qgrx3.us-east-1.elasticbeanstalk.com/media/:splat 200
+/admin/* http://speedtrust-env.eba-4m3qgrx3.us-east-1.elasticbeanstalk.com/admin/:splat 200
