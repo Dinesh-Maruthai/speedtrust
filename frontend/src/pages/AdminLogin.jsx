@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 
 const AdminLogin = () => {
   const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setError('');
     try {
-      const response = await axios.post('/api/token/', { username, password });
+      const response = await api.post('/api/token/', { username, password });
       const { access, refresh } = response.data;
       localStorage.setItem('accessToken', access);
       localStorage.setItem('refreshToken', refresh);

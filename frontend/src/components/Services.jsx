@@ -192,7 +192,7 @@ const Services = () => {
               <div className="service-card-content">
                 <h3 className="service-card-title">{card.title}</h3>
                 <p className="service-card-description">{card.description}</p>
-                <a
+                {/* <a
                   href={card.readMoreLink}
                   className="service-card-readmore"
                   onClick={(e) => handleReadMore(card.id, card.title, e)}
@@ -201,7 +201,7 @@ const Services = () => {
                   <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M3 8h10M9 4l4 4-4 4" />
                   </svg>
-                </a>
+                </a> */}
               </div>
             </div>
           ))}

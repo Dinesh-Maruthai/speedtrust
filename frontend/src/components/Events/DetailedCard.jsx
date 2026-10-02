@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import api from '../../api/axios';
 import { eventsData } from './eventsData';
 import './DetailedCard.css';
 
@@ -112,7 +113,12 @@ const MiniEventCard = ({ event, onNavigate }) => (
 const DetailedCard = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const event = eventsData.find((e) => e.id === Number(id));
+
+  const [event, setEvent] = useState(() => {
+    return eventsData.find((e) => e.id === Number(id)) || null;
+  });
+  const [loading, setLoading] = useState(!event);
+  const [error, setError] = useState(null);
 
   const [imgIndex, setImgIndex] = useState(0);
   const [isSaved, setIsSaved] = useState(false);
@@ -124,6 +130,41 @@ const DetailedCard = () => {
     setIsSaved(false);
     setIsLiked(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Fetch live event data
+    let isMounted = true;
+    setLoading(true);
+    setError(null);
+
+    api.get(`/api/payment/public/events/${id}/`)
+      .then((res) => {
+        if (!isMounted) return;
+        const data = res.data;
+        if (data && data.id) {
+          setEvent({
+            ...data,
+            thumbnail: data.thumbnail_url || data.thumbnail || (eventsData[0] && eventsData[0].thumbnail),
+            images: data.images && data.images.length > 0 ? data.images : [data.thumbnail_url || data.thumbnail],
+            donorInitials: data.donor_initials || data.donorInitials || (data.donor ? data.donor.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() : 'ST'),
+          });
+        }
+      })
+      .catch(() => {
+        // Fall back to static dataset if available
+        const fallback = eventsData.find((e) => e.id === Number(id));
+        if (fallback) {
+          setEvent(fallback);
+        } else {
+          setError('Event not found');
+        }
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   // Keyboard navigation for image slider
@@ -141,7 +182,19 @@ const DetailedCard = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [event]);
 
-  if (!event) {
+  if (loading) {
+    return (
+      <div className="dc-page">
+        <div className="dc-not-found" style={{ padding: '6rem 2rem' }}>
+          <div className="events-spinner" style={{ margin: '0 auto 1.5rem', width: 36, height: 36 }} />
+          <h2>Loading Event Details…</h2>
+          <p>Fetching full event moments, photos, and impact stories.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!event || error) {
     return (
       <div className="dc-page">
         <div className="dc-not-found">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../../api/axios';
 import './Event.css';
 import { eventsData } from './eventsData';
 
@@ -23,24 +24,43 @@ const ArrowIcon = () => (
 // ─── Component ────────────────────────────────────────────────────────────────
 const Event = () => {
   const navigate = useNavigate();
-  const [events, setEvents] = useState(eventsData);
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchEvents = React.useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await api.get('/api/payment/public/events/');
+      const data = res.data;
+      if (Array.isArray(data)) {
+        const formatted = data.map((item) => ({
+          ...item,
+          thumbnail: item.thumbnail_url || item.thumbnail || (eventsData[0] && eventsData[0].thumbnail),
+          donorInitials: item.donor_initials || item.donorInitials || (item.donor ? item.donor.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase() : 'ST'),
+        }));
+        setEvents(formatted);
+      } else {
+        setEvents([]);
+      }
+    } catch (err) {
+      console.error('Failed to fetch events:', err);
+      setError('Unable to load upcoming events from server. Please check your internet connection and try again.');
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
-    fetch('/api/payment/public/events/')
-      .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-          // Normalize API fields with static format
-          const formatted = data.map(item => ({
-            ...item,
-            thumbnail: item.thumbnail_url || item.thumbnail || (eventsData[0] && eventsData[0].thumbnail),
-            donorInitials: item.donor_initials || item.donorInitials || 'ST',
-          }));
-          setEvents(formatted);
-        }
-      })
-      .catch(() => {});
-  }, []);
+    fetchEvents();
+  }, [fetchEvents]);
+
+  const handleLoadDemo = () => {
+    setEvents(eventsData);
+    setError(null);
+    setLoading(false);
+  };
 
   const handleReadMore = (id) => navigate(`/events/${id}`);
 
@@ -61,59 +81,142 @@ const Event = () => {
         </p>
       </div>
 
-      {/* ── Cards ── */}
+      {/* ── Section Header & Content ── */}
       <div className="events-section">
         <div className="events-section-header">
           <h2>Upcoming &amp; Past Events</h2>
-          <span className="events-count-badge">{events.length} Events</span>
+          {!loading && !error && (
+            <span className="events-count-badge">{events.length} Events</span>
+          )}
         </div>
 
-        <div className="events-grid">
-          {events.map((ev) => (
-            <article key={ev.id} className="event-card">
-              {/* Image */}
-              <div className="event-thumbnail-wrap">
-                <img
-                  src={ev.thumbnail}
-                  alt={ev.title}
-                  className="event-thumbnail"
-                  loading="lazy"
-                />
-                <span className="event-category-pill">{ev.category}</span>
-                <div className="event-date-chip">
-                  <CalendarIcon />
-                  {ev.date}
-                </div>
-              </div>
-
-              {/* Body */}
-              <div className="event-body">
-                <h3 className="event-title">{ev.title}</h3>
-                <p className="event-description">{ev.description}</p>
-                <div className="event-donor-row">
-                  <div className="event-donor-avatar" aria-hidden="true">
-                    {ev.donorInitials}
+        {/* ── 1. Loading State ── */}
+        {loading && (
+          <div className="events-state-wrapper">
+            <div className="events-loading-header">
+              <div className="events-spinner" />
+              <p>Loading upcoming events &amp; community drives…</p>
+            </div>
+            <div className="events-skeleton-grid">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="events-skeleton-card">
+                  <div className="events-skeleton-img" />
+                  <div className="events-skeleton-body">
+                    <div className="events-skeleton-line short" />
+                    <div className="events-skeleton-line title" />
+                    <div className="events-skeleton-line desc" />
+                    <div className="events-skeleton-line desc-2" />
                   </div>
-                  <p className="event-donor-label">
-                    Supported by <strong>{ev.donor}</strong>
-                  </p>
+                  <div className="events-skeleton-footer">
+                    <div className="events-skeleton-btn" />
+                  </div>
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
+        )}
 
-              {/* CTA */}
-              <div className="event-card-footer">
-                <button
-                  className="read-more-btn"
-                  onClick={() => handleReadMore(ev.id)}
-                  id={`event-read-more-${ev.id}`}
-                  aria-label={`Read more about ${ev.title}`}
-                >
-                  Read More <ArrowIcon />
-                </button>
-              </div>
-            </article>
-          ))}
-        </div>
+        {/* ── 2. Error State ── */}
+        {!loading && error && (
+          <div className="events-state-card events-error-card">
+            <div className="events-state-icon">⚠️</div>
+            <h3 className="events-state-title">Unable to Load Events</h3>
+            <p className="events-state-desc">{error}</p>
+            <div className="events-state-actions">
+              <button
+                type="button"
+                className="events-state-btn primary"
+                onClick={fetchEvents}
+              >
+                🔄 Try Again
+              </button>
+              <button
+                type="button"
+                className="events-state-btn secondary"
+                onClick={handleLoadDemo}
+              >
+                View Sample Events
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── 3. Empty State (0 events found) ── */}
+        {!loading && !error && events.length === 0 && (
+          <div className="events-state-card events-empty-card">
+            <div className="events-state-icon">📅</div>
+            <h3 className="events-state-title">No Events Scheduled Right Now</h3>
+            <p className="events-state-desc">
+              There are currently no active community events or drives listed. Our team is preparing upcoming education, healthcare, and nutrition initiatives in Kallakurichi.
+            </p>
+            <div className="events-state-actions">
+              <button
+                type="button"
+                className="events-state-btn primary"
+                onClick={() => navigate('/gallery')}
+              >
+                Explore Photo Gallery
+              </button>
+              <button
+                type="button"
+                className="events-state-btn secondary"
+                onClick={() => navigate('/donate')}
+              >
+                Support Our Mission
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* ── 4. Events Grid ── */}
+        {!loading && !error && events.length > 0 && (
+          <div className="events-grid">
+            {events.map((ev) => (
+              <article key={ev.id} className="event-card">
+                {/* Image */}
+                <div className="event-thumbnail-wrap">
+                  <img
+                    src={ev.thumbnail}
+                    alt={ev.title}
+                    className="event-thumbnail"
+                    loading="lazy"
+                  />
+                  <span className="event-category-pill">{ev.category}</span>
+                  <div className="event-date-chip">
+                    <CalendarIcon />
+                    {ev.date}
+                  </div>
+                </div>
+
+                {/* Body */}
+                <div className="event-body">
+                  <h3 className="event-title">{ev.title}</h3>
+                  <p className="event-description">{ev.description}</p>
+                  <div className="event-donor-row">
+                    <div className="event-donor-avatar" aria-hidden="true">
+                      {ev.donorInitials}
+                    </div>
+                    <p className="event-donor-label">
+                      Supported by <strong>{ev.donor || 'Community Donors'}</strong>
+                    </p>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="event-card-footer">
+                  <button
+                    className="read-more-btn"
+                    onClick={() => handleReadMore(ev.id)}
+                    id={`event-read-more-${ev.id}`}
+                    aria-label={`Read more about ${ev.title}`}
+                  >
+                    Read More <ArrowIcon />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

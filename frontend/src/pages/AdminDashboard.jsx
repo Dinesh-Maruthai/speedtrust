@@ -1,6 +1,6 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api, { API_BASE_URL } from '../api/axios';
 
 /* ─────────────── theme tokens ─────────────── */
 const THEMES = {
@@ -52,7 +52,6 @@ const THEMES = {
 
 /* ─────────────── helpers ─────────────── */
 const fmt = n => Number(n || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 });
-const authHeaders = () => ({ Authorization: `Bearer ${localStorage.getItem('accessToken')}` });
 
 function StatusBadge({ status, t }) {
   const map = { success: t.badgeSuccess, pending: t.badgePending, failed: t.badgeFailed, refunded: t.badgePending };
@@ -86,14 +85,9 @@ function Sidebar({ active, setActive, onLogout, dark, setDark, t }) {
     }}>
       {/* Brand */}
       <div style={{ display:'flex', alignItems:'center', gap:'0.6rem', marginBottom:'1.75rem' }}>
-        <div style={{
-          width:34, height:34, borderRadius:'10px',
-          background:'linear-gradient(135deg,#4f46e5,#7c3aed)',
-          display:'flex', alignItems:'center', justifyContent:'center',
-          fontSize:'1rem', color:'#fff', boxShadow:'0 2px 8px rgba(79,70,229,0.3)',
-        }}>⚡</div>
+        
         <span style={{ color:t.text, fontWeight:800, fontSize:'1rem', letterSpacing:'-0.01em' }}>
-          SpeedTrust
+          Karunai Illam
         </span>
       </div>
 
@@ -181,7 +175,7 @@ function Panel({ open, onClose, title, children, t }) {
     }}>
       <div onClick={onClose} style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.45)' }} />
       <div style={{
-        position:'relative', width:'500px', maxWidth:'96vw', height:'100vh',
+        position:'relative', width:'520px', maxWidth:'96vw', height:'100vh',
         background:t.surface, borderLeft:`1px solid ${t.surfaceBorder}`,
         overflowY:'auto', display:'flex', flexDirection:'column',
         boxShadow:'-8px 0 32px rgba(0,0,0,0.2)',
@@ -197,44 +191,47 @@ function Panel({ open, onClose, title, children, t }) {
 }
 
 /* ─────────────── form field ─────────────── */
-function Field({ label, t, children }) {
+function Field({ label, t, required, error, children }) {
   return (
     <div style={{ marginBottom:'1rem' }}>
-      <label style={{ display:'block', fontSize:'0.74rem', fontWeight:600, color:t.textMuted, letterSpacing:'0.05em', textTransform:'uppercase', marginBottom:'0.35rem' }}>{label}</label>
+      <label style={{ display:'block', fontSize:'0.74rem', fontWeight:600, color: error ? t.danger : t.textMuted, letterSpacing:'0.05em', textTransform:'uppercase', marginBottom:'0.35rem' }}>
+        {label} {required && <span style={{ color: t.danger }}>*</span>}
+      </label>
       {children}
+      {error && <p style={{ color: t.danger, fontSize: '0.75rem', margin: '0.3rem 0 0' }}>{error}</p>}
     </div>
   );
 }
-function Input({ t, ...props }) {
+function Input({ t, hasError, ...props }) {
   return (
     <input {...props} style={{
       width:'100%', padding:'0.6rem 0.8rem',
-      background:t.inputBg, border:`1px solid ${t.inputBorder}`,
+      background:t.inputBg, border:`1px solid ${hasError ? t.danger : t.inputBorder}`,
       borderRadius:'8px', color:t.text, fontSize:'0.875rem',
       outline:'none', boxSizing:'border-box', fontFamily:'inherit',
       ...props.style,
     }} />
   );
 }
-function Textarea({ t, ...props }) {
+function Textarea({ t, hasError, ...props }) {
   return (
     <textarea {...props} style={{
       width:'100%', padding:'0.6rem 0.8rem', minHeight:'90px',
-      background:t.inputBg, border:`1px solid ${t.inputBorder}`,
+      background:t.inputBg, border:`1px solid ${hasError ? t.danger : t.inputBorder}`,
       borderRadius:'8px', color:t.text, fontSize:'0.875rem',
       outline:'none', boxSizing:'border-box', fontFamily:'inherit', resize:'vertical',
       ...props.style,
     }} />
   );
 }
-function Select({ t, children, ...props }) {
+function Select({ t, ...props }) {
   return (
     <select {...props} style={{
       width:'100%', padding:'0.6rem 0.8rem',
       background:t.inputBg, border:`1px solid ${t.inputBorder}`,
       borderRadius:'8px', color:t.text, fontSize:'0.875rem',
       outline:'none', boxSizing:'border-box', fontFamily:'inherit',
-    }}>{children}</select>
+    }} />
   );
 }
 function Btn({ children, t, variant='primary', ...props }) {
@@ -248,6 +245,192 @@ function Btn({ children, t, variant='primary', ...props }) {
       padding:'0.55rem 1.1rem', borderRadius:'8px', fontSize:'0.86rem', fontWeight:600,
       cursor:'pointer', fontFamily:'inherit', ...styles[variant], ...props.style,
     }}>{children}</button>
+  );
+}
+
+/* ─────────────── Image Uploader Component (Dropbox + Mobile Button) ─────────────── */
+function ImageUploader({ label, preview, file, onFileSelect, onClear, urlValue, onUrlChange, t, error }) {
+  const [dragActive, setDragActive] = useState(false);
+  const [useUrl, setUseUrl] = useState(false);
+  const [localErr, setLocalErr] = useState('');
+  const fileInputRef = useRef(null);
+
+  const handleFiles = (files) => {
+    setLocalErr('');
+    if (!files || files.length === 0) return;
+    const f = files[0];
+    if (!f.type.startsWith('image/')) {
+      setLocalErr('Invalid file type. Please select a valid photo (JPEG, PNG, WebP, GIF).');
+      return;
+    }
+    if (f.size > 10 * 1024 * 1024) {
+      setLocalErr('Image exceeds 10MB limit. Please choose a smaller photo.');
+      return;
+    }
+    onFileSelect(f);
+  };
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === 'dragenter' || e.type === 'dragover') setDragActive(true);
+    else if (e.type === 'dragleave') setDragActive(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleFiles(e.dataTransfer.files);
+    }
+  };
+
+  const hasPhoto = Boolean(preview || file);
+
+  return (
+    <div style={{ marginBottom:'1.35rem' }}>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'0.45rem' }}>
+        <label style={{ display:'block', fontSize:'0.74rem', fontWeight:700, color: (error || localErr) ? t.danger : t.textMuted, letterSpacing:'0.06em', textTransform:'uppercase' }}>
+          {label} <span style={{ color: t.danger }}>*</span>
+        </label>
+        <button
+          type="button"
+          onClick={() => { setUseUrl(!useUrl); setLocalErr(''); }}
+          style={{ background:'none', border:'none', color:t.accent, fontSize:'0.74rem', fontWeight:600, cursor:'pointer', padding:0, textDecoration:'underline' }}
+        >
+          {useUrl ? '← Back to Image Upload' : 'Optional: Image Link'}
+        </button>
+      </div>
+
+      {useUrl ? (
+        <div>
+          <Input
+            t={t}
+            value={urlValue || ''}
+            onChange={(e) => onUrlChange(e.target.value)}
+            placeholder="https://images.unsplash.com/..."
+            hasError={Boolean(error || localErr)}
+          />
+          <p style={{ margin:'0.35rem 0 0', fontSize:'0.73rem', color:t.textMuted }}>Paste direct public image URL as fallback.</p>
+        </div>
+      ) : (
+        <div>
+          {/* Native file input that triggers mobile gallery / camera */}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            style={{ display:'none' }}
+            onChange={(e) => handleFiles(e.target.files)}
+          />
+
+          {hasPhoto ? (
+            <div style={{
+              borderRadius:'14px', border:`1px solid ${t.surfaceBorder}`,
+              background:t.surfaceHover, overflow:'hidden',
+              boxShadow:'0 4px 14px rgba(0,0,0,0.06)',
+            }}>
+              <div style={{ height:'190px', display:'flex', alignItems:'center', justifyContent:'center', overflow:'hidden', background:'#0b0b0e', position:'relative' }}>
+                <img
+                  src={preview}
+                  alt="Selected Preview"
+                  style={{ width:'100%', height:'100%', objectFit:'contain' }}
+                />
+                <div style={{ position:'absolute', top:8, left:8, background:'rgba(0,0,0,0.6)', color:'#fff', padding:'3px 8px', borderRadius:'6px', fontSize:'0.7rem', fontWeight:600 }}>
+                  Ready to post
+                </div>
+              </div>
+              <div style={{ padding:'0.85rem 1rem', display:'flex', justifyContent:'space-between', alignItems:'center', borderTop:`1px solid ${t.surfaceBorder}` }}>
+                <div style={{ overflow:'hidden', marginRight:'0.75rem' }}>
+                  <p style={{ margin:0, fontSize:'0.84rem', fontWeight:600, color:t.text, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap' }}>
+                    {file ? file.name : 'Current Photo'}
+                  </p>
+                  {file && (
+                    <p style={{ margin:'2px 0 0', fontSize:'0.72rem', color:t.textMuted }}>
+                      {(file.size / (1024 * 1024)).toFixed(2)} MB · {file.type.split('/')[1]?.toUpperCase()}
+                    </p>
+                  )}
+                </div>
+                <div style={{ display:'flex', gap:'0.5rem', flexShrink:0 }}>
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    style={{
+                      background:'transparent', border:`1px solid ${t.inputBorder}`,
+                      color:t.text, borderRadius:'8px', padding:'0.4rem 0.85rem',
+                      fontSize:'0.78rem', cursor:'pointer', fontWeight:600,
+                    }}
+                  >
+                    Change
+                  </button>
+                  <button
+                    type="button"
+                    onClick={onClear}
+                    style={{
+                      background:t.badgeFailed.bg, color:t.badgeFailed.color,
+                      border:'none', borderRadius:'8px', padding:'0.4rem 0.85rem',
+                      fontSize:'0.78rem', cursor:'pointer', fontWeight:600,
+                    }}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Dropbox dropzone with Mobile Gallery Button */
+            <div
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+              onClick={() => fileInputRef.current?.click()}
+              style={{
+                border: `2px dashed ${(error || localErr) ? t.danger : (dragActive ? t.accent : t.inputBorder)}`,
+                borderRadius:'14px',
+                padding:'2rem 1.25rem',
+                textAlign:'center',
+                cursor:'pointer',
+                background: dragActive ? (t.surfaceHover || '#252530') : ((error || localErr) ? (t.badgeFailed.bg || '#fff1f2') : t.inputBg),
+                transition:'all 0.2s ease',
+              }}
+            >
+              <div style={{ fontSize:'2.5rem', marginBottom:'0.4rem' }}>📸</div>
+              <p style={{ margin:'0 0 0.25rem', fontSize:'0.92rem', fontWeight:700, color:t.text }}>
+                Drag &amp; drop your photo here
+              </p>
+              <p style={{ margin:'0 0 1rem', fontSize:'0.78rem', color:t.textMuted }}>
+                Supports JPG, PNG, WebP up to 10MB
+              </p>
+
+              {/* Dedicated Mobile & Desktop Gallery Upload Button */}
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); fileInputRef.current?.click(); }}
+                style={{
+                  display:'inline-flex', alignItems:'center', justifyContent:'center', gap:'0.55rem',
+                  padding:'0.7rem 1.4rem', borderRadius:'10px',
+                  background:'linear-gradient(135deg,#4f46e5,#7c3aed)',
+                  color:'#fff', border:'none', fontSize:'0.88rem', fontWeight:700,
+                  cursor:'pointer', minHeight:'44px',
+                  boxShadow:'0 4px 14px rgba(79,70,229,0.35)',
+                  transition:'all 0.15s ease',
+                }}
+              >
+                <span>📱</span> Upload from Mobile Gallery / Files
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {(localErr || error) && (
+        <p style={{ color: t.danger, fontSize:'0.79rem', fontWeight:600, margin:'0.45rem 0 0', display:'flex', alignItems:'center', gap:'0.35rem' }}>
+          <span>⚠️</span> {localErr || error}
+        </p>
+      )}
+    </div>
   );
 }
 
@@ -304,7 +487,7 @@ function DonationsTab({ t }) {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/payment/donations/', { headers: authHeaders() });
+      const res = await api.get('/api/payment/donations/');
       setDonations(Array.isArray(res.data) ? res.data : (res.data.results || []));
     } catch {
       // fallback
@@ -407,7 +590,7 @@ function DonationsTab({ t }) {
 
             {selected.status === 'success' && (
               <a
-                href={`/api/payment/download-receipt/${selected.donation_id}/`}
+                href={`${API_BASE_URL}/api/payment/download-receipt/${selected.donation_id}/`}
                 target="_blank"
                 rel="noreferrer"
                 style={{
@@ -449,7 +632,7 @@ function CampaignsTab({ t }) {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/payment/campaigns/', { headers: authHeaders() });
+      const res = await api.get('/api/payment/campaigns/');
       setCampaigns(Array.isArray(res.data) ? res.data : (res.data.results || []));
     } catch {
       setMsg('Failed to load campaigns.');
@@ -466,10 +649,10 @@ function CampaignsTab({ t }) {
   async function save() {
     setSaving(true); setMsg('');
     try {
-      if (editSlug) await axios.put(`/api/payment/campaigns/${editSlug}/`, form, { headers: authHeaders() });
+      if (editSlug) await api.put(`/api/payment/campaigns/${editSlug}/`, form);
       else {
         const slug = form.slug || form.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-        await axios.post('/api/payment/campaigns/', { ...form, slug }, { headers: authHeaders() });
+        await api.post('/api/payment/campaigns/', { ...form, slug });
       }
       setPanel(false); load();
     } catch {
@@ -532,13 +715,13 @@ function CampaignsTab({ t }) {
 
       {/* Campaign Modal */}
       <Panel open={panel} onClose={() => setPanel(false)} title={editSlug ? 'Edit Campaign' : 'New Campaign'} t={t}>
-        <Field label="Campaign Name" t={t}><Input t={t} value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="e.g. Free Breakfast for School Children" /></Field>
+        <Field label="Campaign Name" t={t} required><Input t={t} value={form.name} onChange={e=>setForm({...form,name:e.target.value})} placeholder="e.g. Free Breakfast for School Children" /></Field>
         <Field label="Category" t={t}>
           <Select t={t} value={form.category} onChange={e=>setForm({...form,category:e.target.value})}>
             {CAMP_CATS.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
           </Select>
         </Field>
-        <Field label="Goal Amount (₹)" t={t}><Input t={t} type="number" value={form.goal_amount} onChange={e=>setForm({...form,goal_amount:e.target.value})} placeholder="100000" /></Field>
+        <Field label="Goal Amount (₹)" t={t} required><Input t={t} type="number" value={form.goal_amount} onChange={e=>setForm({...form,goal_amount:e.target.value})} placeholder="100000" /></Field>
         <Field label="Description" t={t}><Textarea t={t} value={form.description} onChange={e=>setForm({...form,description:e.target.value})} placeholder="Describe what this campaign supports…" /></Field>
         <Field label="Cover Image URL" t={t}><Input t={t} value={form.image_url||''} onChange={e=>setForm({...form,image_url:e.target.value})} placeholder="https://..." /></Field>
         <Field label="Active Status" t={t}>
@@ -562,49 +745,136 @@ const EVENT_BLANK = { title:'', category:'Community', description:'', details:''
 const EVENT_CATS  = ['Nutrition','Education','Healthcare','Community','Sports','Celebrations','Arts'];
 
 function EventsTab({ t }) {
-  const [items, setItems]   = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [panel, setPanel]   = useState(false);
-  const [form, setForm]     = useState(EVENT_BLANK);
-  const [editId, setEditId] = useState(null);
-  const [saving, setSaving] = useState(false);
-  const [msg, setMsg]       = useState('');
+  const [items, setItems]       = useState([]);
+  const [loading, setLoading]   = useState(true);
+  const [panel, setPanel]       = useState(false);
+  const [form, setForm]         = useState(EVENT_BLANK);
+  const [thumbnailFile, setThumbnailFile] = useState(null);
+  const [thumbnailPreview, setThumbnailPreview] = useState('');
+  const [editId, setEditId]     = useState(null);
+  const [saving, setSaving]     = useState(false);
+  const [errors, setErrors]     = useState({});
+  const [generalError, setGeneralError] = useState('');
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/payment/admin/events/', { headers: authHeaders() });
+      const res = await api.get('/api/payment/admin/events/');
       setItems(Array.isArray(res.data) ? res.data : (res.data.results || []));
-    } catch { setMsg('Failed to load events.'); }
-    finally { setLoading(false); }
+    } catch {
+      setGeneralError('Failed to load events.');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);
 
-  function openNew() { setForm(EVENT_BLANK); setEditId(null); setPanel(true); }
-  function openEdit(item) { setForm({...item}); setEditId(item.id); setPanel(true); }
+  function openNew() {
+    setForm(EVENT_BLANK);
+    setThumbnailFile(null);
+    setThumbnailPreview('');
+    setEditId(null);
+    setErrors({});
+    setGeneralError('');
+    setPanel(true);
+  }
+
+  function openEdit(item) {
+    setForm({ ...item });
+    setThumbnailFile(null);
+    setThumbnailPreview(item.thumbnail_url || item.thumbnail || '');
+    setEditId(item.id);
+    setErrors({});
+    setGeneralError('');
+    setPanel(true);
+  }
+
+  const handleFileSelect = (file) => {
+    setThumbnailFile(file);
+    const objectUrl = URL.createObjectURL(file);
+    setThumbnailPreview(objectUrl);
+    setErrors(prev => ({ ...prev, thumbnail: '' }));
+  };
+
+  const handleClearThumbnail = () => {
+    setThumbnailFile(null);
+    setThumbnailPreview('');
+  };
 
   async function save() {
-    setSaving(true); setMsg('');
+    setGeneralError('');
+    const newErrors = {};
+
+    if (!form.title || !form.title.trim()) newErrors.title = 'Event title is required.';
+    if (!form.date || !form.date.trim()) newErrors.date = 'Date is required (e.g. Oct 12, 2024).';
+    if (!form.location || !form.location.trim()) newErrors.location = 'Location is required.';
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setGeneralError('Please fill in all required fields.');
+      return;
+    }
+
+    setSaving(true);
     try {
-      if (editId) await axios.put(`/api/payment/admin/events/${editId}/`, form, { headers: authHeaders() });
-      else        await axios.post('/api/payment/admin/events/', form, { headers: authHeaders() });
-      setPanel(false); load();
-    } catch { setMsg('Save failed. Check required fields.'); }
-    finally { setSaving(false); }
+      const formData = new FormData();
+      formData.append('title', form.title.trim());
+      formData.append('category', form.category);
+      formData.append('date', form.date.trim());
+      formData.append('location', form.location.trim());
+      formData.append('description', form.description || '');
+      formData.append('details', form.details || '');
+      formData.append('beneficiaries', form.beneficiaries || '');
+      formData.append('volunteers', form.volunteers || '');
+      formData.append('donor', form.donor || '');
+      formData.append('donor_initials', form.donor_initials || '');
+      formData.append('is_published', form.is_published);
+
+      if (thumbnailFile) {
+        formData.append('thumbnail', thumbnailFile);
+      }
+
+      if (editId) {
+        await api.put(`/api/payment/admin/events/${editId}/`, formData);
+      } else {
+        await api.post('/api/payment/admin/events/', formData);
+      }
+      setPanel(false);
+      load();
+    } catch (err) {
+      if (err.response?.data && typeof err.response.data === 'object') {
+        const errMessages = [];
+        Object.entries(err.response.data).forEach(([field, msgs]) => {
+          const text = Array.isArray(msgs) ? msgs.join(', ') : String(msgs);
+          errMessages.push(`${field}: ${text}`);
+        });
+        setGeneralError(errMessages.join(' | '));
+      } else {
+        setGeneralError('Failed to save event. Check connection and try again.');
+      }
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function del(id) {
     if (!window.confirm('Delete this event?')) return;
-    try { await axios.delete(`/api/payment/admin/events/${id}/`, { headers: authHeaders() }); load(); }
-    catch { setMsg('Delete failed.'); }
+    try {
+      await api.delete(`/api/payment/admin/events/${id}/`);
+      load();
+    } catch {
+      setGeneralError('Delete failed.');
+    }
   }
 
   async function togglePublish(item) {
     try {
-      await axios.patch(`/api/payment/admin/events/${item.id}/`, { is_published: !item.is_published }, { headers: authHeaders() });
+      await api.patch(`/api/payment/admin/events/${item.id}/`, { is_published: !item.is_published });
       load();
-    } catch { setMsg('Update failed.'); }
+    } catch {
+      setGeneralError('Update failed.');
+    }
   }
 
   return (
@@ -613,7 +883,11 @@ function EventsTab({ t }) {
         <h2 style={{ margin:0, fontSize:'0.95rem', fontWeight:700, color:t.text }}>Events ({items.length})</h2>
         <Btn t={t} onClick={openNew}>+ New Event</Btn>
       </div>
-      {msg && <p style={{ color:t.danger, fontSize:'0.85rem', marginBottom:'1rem' }}>{msg}</p>}
+      {generalError && (
+        <div style={{ padding:'0.75rem 1rem', background:t.badgeFailed.bg, color:t.badgeFailed.color, borderRadius:'8px', marginBottom:'1rem', fontSize:'0.84rem' }}>
+          ⚠️ {generalError}
+        </div>
+      )}
 
       <div style={{ background:t.surface, border:`1px solid ${t.surfaceBorder}`, borderRadius:'14px', overflow:'hidden' }}>
         {loading ? (
@@ -645,7 +919,7 @@ function EventsTab({ t }) {
                   <td style={{ padding:'0.8rem 1rem', borderBottom:`1px solid ${t.surfaceBorder}` }}>
                     <div style={{ display:'flex', gap:'0.5rem' }}>
                       <Btn t={t} variant="ghost" onClick={() => openEdit(item)} style={{ padding:'0.3rem 0.7rem', fontSize:'0.78rem' }}>Edit</Btn>
-                      <Btn t={t} variant="danger" onClick={() => del(item.id)} style={{ padding:'0.3rem 0.7rem', fontSize:'0.78rem' }}>Delete</Btn>
+                      <Btn t={t} variant="danger" onClick={() => del(item.id)} style={{ padding:'0.3rem 0.6rem', fontSize:'0.78rem' }}>✕</Btn>
                     </div>
                   </td>
                 </tr>
@@ -656,18 +930,46 @@ function EventsTab({ t }) {
       </div>
 
       <Panel open={panel} onClose={() => setPanel(false)} title={editId ? 'Edit Event' : 'New Event'} t={t}>
-        <Field label="Title" t={t}><Input t={t} value={form.title} onChange={e=>setForm({...form,title:e.target.value})} placeholder="Event title" /></Field>
+        {generalError && (
+          <div style={{ padding:'0.75rem 1rem', background:t.badgeFailed.bg, color:t.badgeFailed.color, borderRadius:'8px', marginBottom:'1.25rem', fontSize:'0.84rem' }}>
+            ⚠️ {generalError}
+          </div>
+        )}
+
+        {/* Thumbnail Image Uploader */}
+        <ImageUploader
+          label="Event Banner / Thumbnail"
+          preview={thumbnailPreview}
+          file={thumbnailFile}
+          onFileSelect={handleFileSelect}
+          onClear={handleClearThumbnail}
+          onUrlChange={() => {}}
+          t={t}
+          error={errors.thumbnail}
+        />
+
+        <Field label="Title" t={t} required error={errors.title}>
+          <Input t={t} hasError={Boolean(errors.title)} value={form.title} onChange={e=>{ setForm({...form,title:e.target.value}); setErrors({...errors,title:''}); }} placeholder="Event title" />
+        </Field>
         <Field label="Category" t={t}>
           <Select t={t} value={form.category} onChange={e=>setForm({...form,category:e.target.value})}>
             {EVENT_CATS.map(c=><option key={c}>{c}</option>)}
           </Select>
         </Field>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem' }}>
-          <Field label="Date" t={t}><Input t={t} value={form.date} onChange={e=>setForm({...form,date:e.target.value})} placeholder="Oct 12, 2024" /></Field>
-          <Field label="Location" t={t}><Input t={t} value={form.location} onChange={e=>setForm({...form,location:e.target.value})} placeholder="City, State" /></Field>
+          <Field label="Date" t={t} required error={errors.date}>
+            <Input t={t} hasError={Boolean(errors.date)} value={form.date} onChange={e=>{ setForm({...form,date:e.target.value}); setErrors({...errors,date:''}); }} placeholder="Oct 12, 2024" />
+          </Field>
+          <Field label="Location" t={t} required error={errors.location}>
+            <Input t={t} hasError={Boolean(errors.location)} value={form.location} onChange={e=>{ setForm({...form,location:e.target.value}); setErrors({...errors,location:''}); }} placeholder="City, State" />
+          </Field>
         </div>
-        <Field label="Description" t={t}><Textarea t={t} value={form.description} onChange={e=>setForm({...form,description:e.target.value})} placeholder="Short description…" /></Field>
-        <Field label="Details" t={t}><Textarea t={t} value={form.details} onChange={e=>setForm({...form,details:e.target.value})} placeholder="Full event details…" style={{minHeight:'120px'}} /></Field>
+        <Field label="Description" t={t}>
+          <Textarea t={t} value={form.description} onChange={e=>setForm({...form,description:e.target.value})} placeholder="Short description…" />
+        </Field>
+        <Field label="Details" t={t}>
+          <Textarea t={t} value={form.details} onChange={e=>setForm({...form,details:e.target.value})} placeholder="Full event details…" style={{minHeight:'120px'}} />
+        </Field>
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem' }}>
           <Field label="Beneficiaries" t={t}><Input t={t} value={form.beneficiaries} onChange={e=>setForm({...form,beneficiaries:e.target.value})} placeholder="250+ Families" /></Field>
           <Field label="Volunteers" t={t}><Input t={t} value={form.volunteers} onChange={e=>setForm({...form,volunteers:e.target.value})} placeholder="80 Volunteers" /></Field>
@@ -682,8 +984,7 @@ function EventsTab({ t }) {
             Show on public events page
           </label>
         </Field>
-        {msg && <p style={{ color:t.danger, fontSize:'0.82rem', marginBottom:'0.75rem' }}>{msg}</p>}
-        <div style={{ display:'flex', gap:'0.75rem', marginTop:'0.5rem' }}>
+        <div style={{ display:'flex', gap:'0.75rem', marginTop:'1rem' }}>
           <Btn t={t} onClick={save} disabled={saving} style={{ flex:1 }}>{saving ? 'Saving…' : 'Save Event'}</Btn>
           <Btn t={t} variant="ghost" onClick={() => setPanel(false)}>Cancel</Btn>
         </div>
@@ -698,44 +999,152 @@ const GAL_CATS  = ['education','nutrition','arts','sports','celebrations','healt
 const GAL_ASPECTS = ['square','tall','wide'];
 
 function GalleryTab({ t }) {
-  const [items, setItems]   = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [panel, setPanel]   = useState(false);
-  const [form, setForm]     = useState(GAL_BLANK);
-  const [editId, setEditId] = useState(null);
-  const [saving, setSaving] = useState(false);
-  const [msg, setMsg]       = useState('');
-  const [filter, setFilter] = useState('all');
+  const [items, setItems]               = useState([]);
+  const [loading, setLoading]           = useState(true);
+  const [panel, setPanel]               = useState(false);
+  const [form, setForm]                 = useState(GAL_BLANK);
+  const [imageFile, setImageFile]       = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
+  const [editId, setEditId]             = useState(null);
+  const [saving, setSaving]             = useState(false);
+  const [errors, setErrors]             = useState({});
+  const [generalError, setGeneralError] = useState('');
+  const [filter, setFilter]             = useState('all');
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const res = await axios.get('/api/payment/admin/gallery/', { headers: authHeaders() });
+      const res = await api.get('/api/payment/admin/gallery/');
       setItems(Array.isArray(res.data) ? res.data : (res.data.results || []));
-    } catch { setMsg('Failed to load gallery.'); }
-    finally { setLoading(false); }
+    } catch {
+      setGeneralError('Failed to load gallery items.');
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);
 
-  function openNew() { setForm(GAL_BLANK); setEditId(null); setPanel(true); }
-  function openEdit(item) { setForm({...item, tags: item.tags||[] }); setEditId(item.id); setPanel(true); }
+  function openNew() {
+    setForm(GAL_BLANK);
+    setImageFile(null);
+    setImagePreview('');
+    setEditId(null);
+    setErrors({});
+    setGeneralError('');
+    setPanel(true);
+  }
+
+  function openEdit(item) {
+    setForm({ ...item, tags: item.tags || [] });
+    setImageFile(null);
+    setImagePreview(item.image_src || item.image_url || '');
+    setEditId(item.id);
+    setErrors({});
+    setGeneralError('');
+    setPanel(true);
+  }
+
+  const handleFileSelect = (file) => {
+    setImageFile(file);
+    const objectUrl = URL.createObjectURL(file);
+    setImagePreview(objectUrl);
+    setForm(prev => ({ ...prev, image_url: '' }));
+    setErrors(prev => ({ ...prev, image: '' }));
+  };
+
+  const handleClearImage = () => {
+    setImageFile(null);
+    setImagePreview('');
+    setForm(prev => ({ ...prev, image_url: '' }));
+  };
+
+  const handleUrlChange = (url) => {
+    setForm(prev => ({ ...prev, image_url: url }));
+    setImageFile(null);
+    setImagePreview(url);
+    if (url) setErrors(prev => ({ ...prev, image: '' }));
+  };
 
   async function save() {
-    setSaving(true); setMsg('');
-    const payload = { ...form, tags: typeof form.tags === 'string' ? form.tags.split(',').map(t=>t.trim()) : form.tags };
+    setGeneralError('');
+    const newErrors = {};
+
+    // Validate Required Fields
+    if (!form.title || !form.title.trim()) {
+      newErrors.title = 'Photo title is required.';
+    }
+    if (!imageFile && !form.image_url && !imagePreview) {
+      newErrors.image = 'Please upload a photo from your mobile gallery or drag & drop one into the box.';
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setGeneralError('Please resolve the errors highlighted below.');
+      return;
+    }
+
+    setSaving(true);
     try {
-      if (editId) await axios.put(`/api/payment/admin/gallery/${editId}/`, payload, { headers: authHeaders() });
-      else        await axios.post('/api/payment/admin/gallery/', payload, { headers: authHeaders() });
-      setPanel(false); load();
-    } catch { setMsg('Save failed. Check required fields.'); }
-    finally { setSaving(false); }
+      const formData = new FormData();
+      formData.append('title', form.title.trim());
+      formData.append('category', form.category);
+      formData.append('aspect', form.aspect);
+      formData.append('date', form.date || '');
+      formData.append('location', form.location || '');
+      formData.append('summary', form.summary || '');
+      formData.append('story', form.story || '');
+      formData.append('impact', form.impact || '');
+      formData.append('likes', form.likes || 0);
+      formData.append('author', form.author || '');
+      formData.append('author_role', form.author_role || '');
+      formData.append('donor_support', form.donor_support || '');
+      formData.append('is_published', form.is_published);
+
+      // Tags formatted as list or string
+      const tagsList = typeof form.tags === 'string'
+        ? form.tags.split(',').map(tag => tag.trim()).filter(Boolean)
+        : (form.tags || []);
+      formData.append('tags', JSON.stringify(tagsList));
+
+      if (imageFile) {
+        formData.append('image', imageFile);
+      } else if (form.image_url) {
+        formData.append('image_url', form.image_url);
+      }
+
+      if (editId) {
+        await api.put(`/api/payment/admin/gallery/${editId}/`, formData);
+      } else {
+        await api.post('/api/payment/admin/gallery/', formData);
+      }
+
+      setPanel(false);
+      load();
+    } catch (err) {
+      if (err.response?.data && typeof err.response.data === 'object') {
+        const errMessages = [];
+        Object.entries(err.response.data).forEach(([field, msgs]) => {
+          const text = Array.isArray(msgs) ? msgs.join(', ') : String(msgs);
+          errMessages.push(`${field}: ${text}`);
+        });
+        setGeneralError(errMessages.join(' | '));
+      } else {
+        setGeneralError('Failed to save gallery photo. Check your connection and try again.');
+      }
+    } finally {
+      setSaving(false);
+    }
   }
 
   async function del(id) {
     if (!window.confirm('Delete this gallery item?')) return;
-    try { await axios.delete(`/api/payment/admin/gallery/${id}/`, { headers: authHeaders() }); load(); }
-    catch { setMsg('Delete failed.'); }
+    try {
+      await api.delete(`/api/payment/admin/gallery/${id}/`);
+      load();
+    } catch {
+      setGeneralError('Delete failed.');
+    }
   }
 
   const filtered = filter === 'all' ? items : items.filter(i => i.category === filter);
@@ -755,10 +1164,15 @@ function GalleryTab({ t }) {
         </div>
         <Btn t={t} onClick={openNew}>+ Add Photo</Btn>
       </div>
-      {msg && <p style={{ color:t.danger, fontSize:'0.85rem', marginBottom:'1rem' }}>{msg}</p>}
+
+      {generalError && (
+        <div style={{ padding:'0.75rem 1rem', background:t.badgeFailed.bg, color:t.badgeFailed.color, borderRadius:'8px', marginBottom:'1.25rem', fontSize:'0.84rem' }}>
+          ⚠️ {generalError}
+        </div>
+      )}
 
       {loading ? (
-        <p style={{ color:t.textMuted, textAlign:'center', padding:'3rem' }}>Loading…</p>
+        <p style={{ color:t.textMuted, textAlign:'center', padding:'3rem' }}>Loading gallery…</p>
       ) : filtered.length === 0 ? (
         <p style={{ color:t.textMuted, textAlign:'center', padding:'3rem' }}>No gallery items. Add your first photo!</p>
       ) : (
@@ -792,45 +1206,86 @@ function GalleryTab({ t }) {
         </div>
       )}
 
-      <Panel open={panel} onClose={() => setPanel(false)} title={editId ? 'Edit Gallery Item' : 'New Gallery Item'} t={t}>
-        <Field label="Title" t={t}><Input t={t} value={form.title} onChange={e=>setForm({...form,title:e.target.value})} placeholder="Photo title" /></Field>
+      {/* Gallery Modal Form */}
+      <Panel open={panel} onClose={() => setPanel(false)} title={editId ? 'Edit Gallery Photo' : 'Post to Gallery'} t={t}>
+        {generalError && (
+          <div style={{ padding:'0.75rem 1rem', background:t.badgeFailed.bg, color:t.badgeFailed.color, borderRadius:'8px', marginBottom:'1.25rem', fontSize:'0.84rem' }}>
+            ⚠️ {generalError}
+          </div>
+        )}
+
+        {/* Dropbox & Mobile Upload Component */}
+        <ImageUploader
+          label="Photo"
+          preview={imagePreview}
+          file={imageFile}
+          onFileSelect={handleFileSelect}
+          onClear={handleClearImage}
+          urlValue={form.image_url}
+          onUrlChange={handleUrlChange}
+          t={t}
+          error={errors.image}
+        />
+
+        <Field label="Title" t={t} required error={errors.title}>
+          <Input
+            t={t}
+            hasError={Boolean(errors.title)}
+            value={form.title}
+            onChange={e => { setForm({ ...form, title: e.target.value }); setErrors({ ...errors, title: '' }); }}
+            placeholder="Photo title (e.g. Morning Meal Distribution)"
+          />
+        </Field>
+
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem' }}>
           <Field label="Category" t={t}>
             <Select t={t} value={form.category} onChange={e=>setForm({...form,category:e.target.value})}>
-              {GAL_CATS.map(c=><option key={c}>{c}</option>)}
+              {GAL_CATS.map(c=><option key={c} value={c}>{c.charAt(0).toUpperCase() + c.slice(1)}</option>)}
             </Select>
           </Field>
-          <Field label="Aspect" t={t}>
+          <Field label="Aspect Ratio" t={t}>
             <Select t={t} value={form.aspect} onChange={e=>setForm({...form,aspect:e.target.value})}>
-              {GAL_ASPECTS.map(a=><option key={a}>{a}</option>)}
+              {GAL_ASPECTS.map(a=><option key={a} value={a}>{a.charAt(0).toUpperCase() + a.slice(1)}</option>)}
             </Select>
           </Field>
         </div>
-        <Field label="Image URL" t={t}><Input t={t} value={form.image_url||''} onChange={e=>setForm({...form,image_url:e.target.value})} placeholder="https://..." /></Field>
+
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem' }}>
           <Field label="Date" t={t}><Input t={t} value={form.date} onChange={e=>setForm({...form,date:e.target.value})} placeholder="Feb 2025" /></Field>
-          <Field label="Location" t={t}><Input t={t} value={form.location} onChange={e=>setForm({...form,location:e.target.value})} placeholder="City" /></Field>
+          <Field label="Location" t={t}><Input t={t} value={form.location} onChange={e=>setForm({...form,location:e.target.value})} placeholder="City / Village" /></Field>
         </div>
-        <Field label="Summary" t={t}><Textarea t={t} value={form.summary} onChange={e=>setForm({...form,summary:e.target.value})} placeholder="One-line summary…" /></Field>
-        <Field label="Story" t={t}><Textarea t={t} value={form.story} onChange={e=>setForm({...form,story:e.target.value})} placeholder="Full story…" style={{minHeight:'100px'}} /></Field>
+
+        <Field label="Short Summary" t={t}>
+          <Textarea t={t} value={form.summary} onChange={e=>setForm({...form,summary:e.target.value})} placeholder="One-line summary for pin card…" style={{minHeight:'70px'}} />
+        </Field>
+
+        <Field label="Full Story" t={t}>
+          <Textarea t={t} value={form.story} onChange={e=>setForm({...form,story:e.target.value})} placeholder="Full story displayed in the detail modal…" style={{minHeight:'100px'}} />
+        </Field>
+
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem' }}>
-          <Field label="Impact" t={t}><Input t={t} value={form.impact} onChange={e=>setForm({...form,impact:e.target.value})} placeholder="180+ Students" /></Field>
-          <Field label="Likes" t={t}><Input t={t} type="number" value={form.likes} onChange={e=>setForm({...form,likes:e.target.value})} /></Field>
+          <Field label="Impact Metric" t={t}><Input t={t} value={form.impact} onChange={e=>setForm({...form,impact:e.target.value})} placeholder="e.g. 180+ Students" /></Field>
+          <Field label="Initial Likes" t={t}><Input t={t} type="number" value={form.likes} onChange={e=>setForm({...form,likes:e.target.value})} /></Field>
         </div>
+
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.75rem' }}>
-          <Field label="Author" t={t}><Input t={t} value={form.author} onChange={e=>setForm({...form,author:e.target.value})} /></Field>
-          <Field label="Author Role" t={t}><Input t={t} value={form.author_role} onChange={e=>setForm({...form,author_role:e.target.value})} /></Field>
+          <Field label="Author / Photographer" t={t}><Input t={t} value={form.author} onChange={e=>setForm({...form,author:e.target.value})} placeholder="Speed Trust Team" /></Field>
+          <Field label="Author Role" t={t}><Input t={t} value={form.author_role} onChange={e=>setForm({...form,author_role:e.target.value})} placeholder="Field Coordinator" /></Field>
         </div>
-        <Field label="Tags (comma-separated)" t={t}><Input t={t} value={Array.isArray(form.tags)?form.tags.join(', '):form.tags} onChange={e=>setForm({...form,tags:e.target.value})} placeholder="#Tag1, #Tag2" /></Field>
-        <Field label="Published" t={t}>
+
+        <Field label="Tags (comma-separated)" t={t}>
+          <Input t={t} value={Array.isArray(form.tags)?form.tags.join(', '):form.tags} onChange={e=>setForm({...form,tags:e.target.value})} placeholder="#Nutrition, #Education, #Kids" />
+        </Field>
+
+        <Field label="Publish Status" t={t}>
           <label style={{ display:'flex', alignItems:'center', gap:'0.5rem', cursor:'pointer', color:t.text, fontSize:'0.875rem' }}>
             <input type="checkbox" checked={form.is_published} onChange={e=>setForm({...form,is_published:e.target.checked})} />
             Show on public gallery page
           </label>
         </Field>
-        {msg && <p style={{ color:t.danger, fontSize:'0.82rem', marginBottom:'0.75rem' }}>{msg}</p>}
-        <div style={{ display:'flex', gap:'0.75rem', marginTop:'0.5rem' }}>
-          <Btn t={t} onClick={save} disabled={saving} style={{ flex:1 }}>{saving ? 'Saving…' : 'Save Item'}</Btn>
+
+        <div style={{ display:'flex', gap:'0.75rem', marginTop:'1rem' }}>
+          <Btn t={t} onClick={save} disabled={saving} style={{ flex:1 }}>{saving ? 'Uploading & Saving…' : 'Save Photo'}</Btn>
           <Btn t={t} variant="ghost" onClick={() => setPanel(false)}>Cancel</Btn>
         </div>
       </Panel>
@@ -848,41 +1303,10 @@ export default function AdminDashboard() {
   const [dark, setDark]     = useState(true);
   const t = THEMES[dark ? 'dark' : 'light'];
 
-  // Automatic JWT refresh interceptor
-  useEffect(() => {
-    const interceptor = axios.interceptors.response.use(
-      res => res,
-      async err => {
-        const original = err.config;
-        if (err.response?.status === 401 && !original._retry) {
-          original._retry = true;
-          const refresh = localStorage.getItem('refreshToken');
-          if (refresh) {
-            try {
-              const res = await axios.post('/api/token/refresh/', { refresh });
-              const newAccess = res.data.access;
-              localStorage.setItem('accessToken', newAccess);
-              original.headers.Authorization = `Bearer ${newAccess}`;
-              return axios(original);
-            } catch {
-              localStorage.removeItem('accessToken');
-              localStorage.removeItem('refreshToken');
-              navigate('/admin/login');
-            }
-          } else {
-            navigate('/admin/login');
-          }
-        }
-        return Promise.reject(err);
-      }
-    );
-    return () => axios.interceptors.response.eject(interceptor);
-  }, [navigate]);
-
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.get('/api/payment/admin/stats/', { headers: authHeaders() });
+        const res = await api.get('/api/payment/admin/stats/');
         setStats(res.data);
       } catch (e) {
         if (e.response?.status === 401) {
