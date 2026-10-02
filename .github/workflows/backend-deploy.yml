@@ -34,7 +34,7 @@ jobs:
 
       - name: Initialize Elastic Beanstalk
         working-directory: ./backend
-        run: eb init speedtrust-backend --region ap-south-1
+        run: eb init speedtrust-backend --region ap-south-1 --platform "Python 3.12"
 
       - name: Deploy to Elastic Beanstalk
         working-directory: ./backend
