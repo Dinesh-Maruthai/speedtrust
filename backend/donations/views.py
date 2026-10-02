@@ -3,6 +3,7 @@ from rest_framework import status, generics, viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, action, permission_classes
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from decimal import Decimal
@@ -420,6 +421,7 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get_serializer_context(self):
         ctx = super().get_serializer_context()
@@ -436,6 +438,19 @@ def public_events(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def public_event_detail(request, pk):
+    """Public: returns single published event detail."""
+    try:
+        event = Event.objects.get(pk=pk, is_published=True)
+        serializer = EventSerializer(event, context={'request': request})
+        return Response(serializer.data)
+    except Event.DoesNotExist:
+        return Response({'detail': 'Event not found'}, status=status.HTTP_404_NOT_FOUND)
+
+
+
 # ──────────────── Gallery CMS ────────────────
 
 class GalleryItemViewSet(viewsets.ModelViewSet):
@@ -445,6 +460,7 @@ class GalleryItemViewSet(viewsets.ModelViewSet):
     queryset = GalleryItem.objects.all()
     serializer_class = GalleryItemSerializer
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
 
     def get_serializer_context(self):
         ctx = super().get_serializer_context()

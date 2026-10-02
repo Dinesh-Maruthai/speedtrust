@@ -38,5 +38,6 @@ urlpatterns = [
 
     # Public CMS endpoints
     path('public/events/', views.public_events, name='public-events'),
+    path('public/events/<int:pk>/', views.public_event_detail, name='public-event-detail'),
     path('public/gallery/', views.public_gallery, name='public-gallery'),
 ]

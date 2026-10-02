@@ -142,6 +142,16 @@ class EventSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'thumbnail_url']
 
+    def to_internal_value(self, data):
+        if hasattr(data, '_mutable') and not data._mutable:
+            data = data.copy()
+        elif not hasattr(data, '_mutable') and isinstance(data, dict):
+            data = dict(data)
+        thumbnail = data.get('thumbnail')
+        if isinstance(thumbnail, str):
+            data.pop('thumbnail', None)
+        return super().to_internal_value(data)
+
     def get_thumbnail_url(self, obj):
         request = self.context.get('request')
         if obj.thumbnail and request:
@@ -149,11 +159,51 @@ class EventSerializer(serializers.ModelSerializer):
         return obj.thumbnail_url
 
 
+class TagsField(serializers.Field):
+    """
+    Custom field for tags that gracefully accepts JSON arrays, comma-separated strings,
+    or list instances without throwing JSON validation errors.
+    """
+    def to_internal_value(self, data):
+        if not data:
+            return []
+        if isinstance(data, list):
+            return [str(t).strip() for t in data if str(t).strip()]
+        if isinstance(data, str):
+            data = data.strip()
+            if not data or data in ('[]', 'null', 'None'):
+                return []
+            try:
+                import json
+                parsed = json.loads(data)
+                if isinstance(parsed, list):
+                    return [str(t).strip() for t in parsed if str(t).strip()]
+                return [str(parsed).strip()]
+            except Exception:
+                # Comma-separated fallback (e.g. "education, relief, food")
+                return [t.strip() for t in data.split(',') if t.strip()]
+        return []
+
+    def to_representation(self, value):
+        if isinstance(value, list):
+            return value
+        if isinstance(value, str):
+            try:
+                import json
+                parsed = json.loads(value)
+                if isinstance(parsed, list):
+                    return parsed
+            except Exception:
+                return [t.strip() for t in value.split(',') if t.strip()]
+        return []
+
+
 class GalleryItemSerializer(serializers.ModelSerializer):
     """
     Serializer for GalleryItem CMS model
     """
-    image_src = serializers.ReadOnlyField()
+    image_src = serializers.SerializerMethodField()
+    tags = TagsField(required=False, default=list)
 
     class Meta:
         model = GalleryItem
@@ -164,3 +214,27 @@ class GalleryItemSerializer(serializers.ModelSerializer):
             'is_published', 'created_at', 'updated_at'
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'image_src']
+
+    def get_image_src(self, obj):
+        request = self.context.get('request')
+        if obj.image:
+            if request:
+                return request.build_absolute_uri(obj.image.url)
+            return obj.image.url
+        return obj.image_url or ''
+
+    def to_internal_value(self, data):
+        if hasattr(data, '_mutable') and not data._mutable:
+            data = data.copy()
+        elif not hasattr(data, '_mutable') and isinstance(data, dict):
+            data = dict(data)
+
+        # Handle image field if it was passed as a string (URL or existing image path)
+        image = data.get('image')
+        if isinstance(image, str):
+            if image.startswith(('http://', 'https://')) and not data.get('image_url'):
+                data['image_url'] = image
+            # Remove from 'image' so ImageField doesn't reject string
+            data.pop('image', None)
+
+        return super().to_internal_value(data)
