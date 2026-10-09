@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ContactUs.css';
 
 const ContactUs = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [formData, setFormData] = useState({
     fullname: '',
     email: '',
@@ -85,14 +85,24 @@ const ContactUs = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.02, rootMargin: '50px' }
     );
 
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
+    } else {
+      setIsVisible(true);
     }
 
-    return () => observer.disconnect();
+    // Safety fallback so content is guaranteed to become visible
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
   }, []);
 
   // Handle form input changes
@@ -228,7 +238,7 @@ const ContactUs = () => {
   const contactInfo = contactData.contactInfo;
 
   return (
-    <section className="contact-section" ref={sectionRef}>
+    <section id="contact" className="contact-section" ref={sectionRef}>
       <div className="contact-container">
         {/* Section Header */}
         <div className="contact-header">

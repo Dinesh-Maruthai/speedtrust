@@ -1,0 +1,525 @@
+----------------------------------------
+/var/log/web.stdout.log
+----------------------------------------
+Oct  2 12:44:14 ip-172-31-18-21 web[228189]: Not Found: /base.inc
+Oct  2 12:44:15 ip-172-31-18-21 web[228189]: Not Found: /main.cgi
+Oct  2 12:44:15 ip-172-31-18-21 web[228189]: Not Found: /indice.html
+Oct  2 12:44:16 ip-172-31-18-21 web[228189]: Not Found: /admin.php
+Oct  2 12:44:16 ip-172-31-18-21 web[228189]: Not Found: /start.cgi
+Oct  2 12:44:17 ip-172-31-18-21 web[228189]: Not Found: /localstart.php
+Oct  2 12:44:17 ip-172-31-18-21 web[228189]: Not Found: /admin.jsp
+Oct  2 12:44:18 ip-172-31-18-21 web[228189]: Not Found: /home.html
+Oct  2 12:44:19 ip-172-31-18-21 web[228189]: Not Found: /admin.jhtml
+Oct  2 12:44:19 ip-172-31-18-21 web[228189]: Not Found: /index.jsp
+Oct  2 12:44:20 ip-172-31-18-21 web[228189]: Not Found: /start.jsp
+Oct  2 12:44:20 ip-172-31-18-21 web[228189]: Not Found: /home.cgi
+Oct  2 12:44:21 ip-172-31-18-21 web[228189]: Not Found: /admin.html
+Oct  2 12:44:22 ip-172-31-18-21 web[228189]: Not Found: /base.php
+Oct  2 12:44:22 ip-172-31-18-21 web[228189]: Not Found: /admin.cgi
+Oct  2 12:44:22 ip-172-31-18-21 web[228189]: Not Found: /admin.cfm
+Oct  2 12:44:23 ip-172-31-18-21 web[228189]: Not Found: /localstart.cfm
+Oct  2 12:44:23 ip-172-31-18-21 web[228189]: Not Found: /localstart.pl
+Oct  2 12:44:23 ip-172-31-18-21 web[228189]: Not Found: /inicio.php
+Oct  2 12:44:23 ip-172-31-18-21 web[228189]: Not Found: /base.pl
+Oct  2 12:44:24 ip-172-31-18-21 web[228189]: Not Found: /home.jsp
+Oct  2 12:44:24 ip-172-31-18-21 web[228189]: Not Found: /base.jsp
+Oct  2 12:44:24 ip-172-31-18-21 web[228189]: Not Found: /home.aspx
+Oct  2 12:44:25 ip-172-31-18-21 web[228189]: Not Found: /base.jsa
+Oct  2 12:44:25 ip-172-31-18-21 web[228189]: Not Found: /inicio.jsa
+Oct  2 12:44:26 ip-172-31-18-21 web[228189]: Not Found: /base.jhtml
+Oct  2 12:44:27 ip-172-31-18-21 web[228189]: Not Found: /base.html
+Oct  2 12:44:27 ip-172-31-18-21 web[228189]: Not Found: /default.shtml
+Oct  2 12:44:28 ip-172-31-18-21 web[228189]: Not Found: /base.cgi
+Oct  2 12:44:29 ip-172-31-18-21 web[228189]: Not Found: /home.php
+Oct  2 12:44:30 ip-172-31-18-21 web[228189]: Not Found: /index.html
+Oct  2 12:44:31 ip-172-31-18-21 web[228189]: Not Found: /base.aspx
+Oct  2 12:44:31 ip-172-31-18-21 web[228189]: Not Found: /inicio.html
+Oct  2 12:44:31 ip-172-31-18-21 web[228189]: Not Found: /home.shtml
+Oct  2 12:44:32 ip-172-31-18-21 web[228189]: Not Found: /home.cfm
+Oct  2 12:44:32 ip-172-31-18-21 web[228189]: Not Found: /default.html
+Oct  2 12:44:33 ip-172-31-18-21 web[228189]: Not Found: /home.jsa
+Oct  2 12:44:33 ip-172-31-18-21 web[228189]: Not Found: /indice.aspx
+Oct  2 12:44:34 ip-172-31-18-21 web[228189]: Not Found: /start.html
+Oct  2 12:44:34 ip-172-31-18-21 web[228189]: Not Found: /indice.cgi
+Oct  2 12:44:34 ip-172-31-18-21 web[228189]: Not Found: /default.cfm
+Oct  2 12:44:35 ip-172-31-18-21 web[228189]: Not Found: /indice.jsp
+Oct  2 12:44:35 ip-172-31-18-21 web[228189]: Not Found: /start.cfm
+Oct  2 12:44:35 ip-172-31-18-21 web[228189]: Not Found: /localstart.asp
+Oct  2 12:44:36 ip-172-31-18-21 web[228189]: Not Found: /menu.pl
+Oct  2 12:44:36 ip-172-31-18-21 web[228189]: Not Found: /indice.jhtml
+Oct  2 12:44:36 ip-172-31-18-21 web[228189]: Not Found: /inicio.cgi
+Oct  2 12:44:37 ip-172-31-18-21 web[228189]: Not Found: /menu.jhtml
+Oct  2 12:44:37 ip-172-31-18-21 web[228189]: Not Found: /index.asp
+Oct  2 12:44:37 ip-172-31-18-21 web[228189]: Not Found: /default.asp
+Oct  2 12:44:38 ip-172-31-18-21 web[228189]: Not Found: /indice.shtml
+Oct  2 12:44:38 ip-172-31-18-21 web[228189]: Not Found: /indice.pl
+Oct  2 12:44:39 ip-172-31-18-21 web[228189]: Not Found: /indice.asp
+Oct  2 12:44:40 ip-172-31-18-21 web[228189]: Not Found: /default.php
+Oct  2 12:44:40 ip-172-31-18-21 web[228189]: Not Found: /menu.html
+Oct  2 12:44:41 ip-172-31-18-21 web[228189]: Not Found: /default.cgi
+Oct  2 12:44:41 ip-172-31-18-21 web[228189]: Not Found: /index.php
+Oct  2 12:44:42 ip-172-31-18-21 web[228189]: Not Found: /start.php
+Oct  2 12:44:42 ip-172-31-18-21 web[228189]: Not Found: /inicio.asp
+Oct  2 12:44:43 ip-172-31-18-21 web[228189]: Not Found: /inicio.shtml
+Oct  2 12:44:43 ip-172-31-18-21 web[228189]: Not Found: /base.shtml
+Oct  2 12:44:43 ip-172-31-18-21 web[228189]: Not Found: /base.asp
+Oct  2 12:44:44 ip-172-31-18-21 web[228189]: Not Found: /inicio.jhtml
+Oct  2 12:44:44 ip-172-31-18-21 web[228189]: Not Found: /menu.aspx
+Oct  2 12:44:44 ip-172-31-18-21 web[228189]: Not Found: /index.cgi
+Oct  2 12:44:44 ip-172-31-18-21 web[228189]: Not Found: /inicio.jsp
+Oct  2 12:44:45 ip-172-31-18-21 web[228189]: Not Found: /inicio.cfm
+Oct  2 12:44:45 ip-172-31-18-21 web[228189]: Not Found: /main.jsp
+Oct  2 12:44:46 ip-172-31-18-21 web[228189]: Not Found: /inicio.aspx
+Oct  2 12:44:46 ip-172-31-18-21 web[228189]: Not Found: /main.html
+Oct  2 12:44:47 ip-172-31-18-21 web[228189]: Not Found: /localstart.jsp
+Oct  2 12:44:48 ip-172-31-18-21 web[228189]: Not Found: /start.pl
+Oct  2 12:44:48 ip-172-31-18-21 web[228189]: Not Found: /localstart.jsa
+Oct  2 12:44:48 ip-172-31-18-21 web[228189]: Not Found: /default.jsa
+Oct  2 12:44:49 ip-172-31-18-21 web[228189]: Not Found: /localstart.jhtml
+Oct  2 12:44:49 ip-172-31-18-21 web[228189]: Not Found: /localstart.html
+Oct  2 12:44:49 ip-172-31-18-21 web[228189]: Not Found: /localstart.cgi
+Oct  2 12:44:49 ip-172-31-18-21 web[228189]: Not Found: /start.jsa
+Oct  2 12:44:50 ip-172-31-18-21 web[228189]: Not Found: /admin.asp
+Oct  2 12:44:50 ip-172-31-18-21 web[228189]: Not Found: /start.jhtml
+Oct  2 12:44:51 ip-172-31-18-21 web[228189]: Not Found: /localstart.aspx
+Oct  2 12:44:53 ip-172-31-18-21 web[228189]: Not Found: /menu.php
+Oct  2 12:44:53 ip-172-31-18-21 web[228189]: Not Found: /default.jsp
+Oct  2 12:44:54 ip-172-31-18-21 web[228189]: Not Found: /menu.asp
+Oct  2 12:44:54 ip-172-31-18-21 web[228189]: Not Found: /index.jsa
+Oct  2 12:44:54 ip-172-31-18-21 web[228189]: Not Found: /main.php
+Oct  2 12:44:54 ip-172-31-18-21 web[228189]: Not Found: /menu.jsp
+Oct  2 12:44:55 ip-172-31-18-21 web[228189]: Not Found: /index.pl
+Oct  2 12:44:56 ip-172-31-18-21 web[228189]: Not Found: /indice.cfm
+Oct  2 12:44:56 ip-172-31-18-21 web[228189]: Not Found: /index.shtml
+Oct  2 12:44:57 ip-172-31-18-21 web[228189]: Not Found: /start.asp
+Oct  2 12:44:58 ip-172-31-18-21 web[228189]: Not Found: /start.shtml
+Oct  2 12:44:58 ip-172-31-18-21 web[228189]: Not Found: /default.pl
+Oct  2 12:44:59 ip-172-31-18-21 web[228189]: Not Found: /main.jsa
+Oct  2 12:44:59 ip-172-31-18-21 web[228189]: Not Found: /index.cfm
+Oct  2 12:45:00 ip-172-31-18-21 web[228189]: Not Found: /default.aspx
+Oct  2 12:45:00 ip-172-31-18-21 web[228189]: Not Found: /main.jhtml
+Oct  2 12:45:02 ip-172-31-18-21 web[228189]: Not Found: /localstart.shtml
+Oct  2 12:52:48 ip-172-31-18-21 web[228189]: Not Found: /developmentserver/metadatauploader
+Oct  2 12:53:11 ip-172-31-18-21 web[228189]: Not Found: /developmentserver/metadatauploader
+
+
+----------------------------------------
+/var/log/eb-engine.log
+----------------------------------------
+
+2026/10/02 12:54:07.981900 [INFO] Running script: .platform/hooks/prebuild/01_install_cairo.sh
+2026/10/02 12:54:10.564791 [INFO] Finished running scripts in /var/app/staging/.platform/hooks/prebuild
+2026/10/02 12:54:10.565493 [INFO] Executing instruction: InstallDependency
+2026/10/02 12:54:10.565499 [INFO] checking dependencies file
+2026/10/02 12:54:10.565518 [INFO] Installing dependencies with requirements.txt by using Pip
+2026/10/02 12:54:10.565530 [INFO] Running command: /var/app/venv/staging-LQM1lest/bin/pip install -r requirements.txt
+2026/10/02 12:54:11.056816 [INFO] Requirement already satisfied: dotenv in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 1)) (0.9.9)
+Requirement already satisfied: Django==4.2.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 2)) (4.2)
+Requirement already satisfied: djangorestframework==3.14.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 3)) (3.14.0)
+Requirement already satisfied: django-cors-headers==4.3.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 4)) (4.3.0)
+Requirement already satisfied: razorpay in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 5)) (2.0.1)
+Requirement already satisfied: reportlab==4.0.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 6)) (4.0.0)
+Requirement already satisfied: python-decouple==3.8 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 7)) (3.8)
+Requirement already satisfied: gunicorn in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 8)) (26.2.0)
+Requirement already satisfied: setuptools in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from -r requirements.txt (line 9)) (84.0.0)
+Requirement already satisfied: asgiref<4,>=3.6.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from Django==4.2.0->-r requirements.txt (line 2)) (3.12.1)
+Requirement already satisfied: sqlparse>=0.3.1 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from Django==4.2.0->-r requirements.txt (line 2)) (0.6.0)
+Requirement already satisfied: pytz in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from djangorestframework==3.14.0->-r requirements.txt (line 3)) (2026.3.post1)
+Requirement already satisfied: pillow>=9.0.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from reportlab==4.0.0->-r requirements.txt (line 6)) (12.3.0)
+Requirement already satisfied: rlPyCairo<1,>=0.2.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from reportlab==4.0.0->-r requirements.txt (line 6)) (0.4.0)
+Requirement already satisfied: freetype-py<2.4,>=2.3.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from reportlab==4.0.0->-r requirements.txt (line 6)) (2.3.0)
+Requirement already satisfied: pycairo>=1.20.0 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from rlPyCairo<1,>=0.2.0->reportlab==4.0.0->-r requirements.txt (line 6)) (1.29.1)
+Requirement already satisfied: python-dotenv in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from dotenv->-r requirements.txt (line 1)) (1.2.3)
+Requirement already satisfied: requests in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from razorpay->-r requirements.txt (line 5)) (2.34.2)
+Requirement already satisfied: charset_normalizer<4,>=2 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from requests->razorpay->-r requirements.txt (line 5)) (3.5.1)
+Requirement already satisfied: idna<4,>=2.5 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from requests->razorpay->-r requirements.txt (line 5)) (3.19)
+Requirement already satisfied: urllib3<3,>=1.26 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from requests->razorpay->-r requirements.txt (line 5)) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in /var/app/venv/staging-LQM1lest/lib64/python3.12/site-packages (from requests->razorpay->-r requirements.txt (line 5)) (2026.7.22)
+
+2026/10/02 12:54:11.056861 [INFO] Executing instruction: check Procfile
+2026/10/02 12:54:11.056913 [INFO] creating default Procfile...
+2026/10/02 12:54:11.057023 [INFO] Executing instruction: configure X-Ray
+2026/10/02 12:54:11.057028 [INFO] X-Ray is not enabled.
+2026/10/02 12:54:11.057031 [INFO] Executing instruction: configure proxy server
+2026/10/02 12:54:11.057044 [INFO] Recreating /var/proxy/staging/nginx
+2026/10/02 12:54:11.067092 [INFO] Executing instruction: configure healthd specific proxy conf
+2026/10/02 12:54:11.069188 [INFO] Running command: systemctl show -p PartOf healthd.service
+2026/10/02 12:54:11.082222 [WARN] Warning: process healthd is already registered...
+Deregistering the process ...
+2026/10/02 12:54:11.082265 [INFO] Running command: systemctl show -p PartOf healthd.service
+2026/10/02 12:54:11.092185 [INFO] Running command: systemctl is-active healthd.service
+2026/10/02 12:54:11.099781 [INFO] Running command: systemctl show -p PartOf healthd.service
+2026/10/02 12:54:11.109164 [INFO] Running command: systemctl stop healthd.service
+2026/10/02 12:54:11.241714 [INFO] Running command: systemctl disable healthd.service
+2026/10/02 12:54:11.526873 [INFO] Removed "/etc/systemd/system/multi-user.target.wants/healthd.service".
+
+2026/10/02 12:54:11.527544 [INFO] Running command: systemctl daemon-reload
+2026/10/02 12:54:11.771774 [INFO] Running command: systemctl reset-failed
+2026/10/02 12:54:11.782593 [INFO] Running command: systemctl daemon-reload
+2026/10/02 12:54:12.068503 [INFO] Running command: systemctl reset-failed
+2026/10/02 12:54:12.077110 [INFO] Running command: systemctl is-enabled aws-eb.target
+2026/10/02 12:54:12.084947 [INFO] Running command: systemctl enable aws-eb.target
+2026/10/02 12:54:12.327472 [INFO] Running command: systemctl start aws-eb.target
+2026/10/02 12:54:12.336683 [INFO] Running command: systemctl enable healthd.service
+2026/10/02 12:54:12.608431 [INFO] Created symlink /etc/systemd/system/multi-user.target.wants/healthd.service → /etc/systemd/system/healthd.service.
+
+2026/10/02 12:54:12.608463 [INFO] Running command: systemctl show -p PartOf healthd.service
+2026/10/02 12:54:12.619699 [INFO] Running command: systemctl is-active healthd.service
+2026/10/02 12:54:12.626959 [INFO] Running command: systemctl start healthd.service
+2026/10/02 12:54:12.696987 [INFO] Copying file /opt/elasticbeanstalk/config/private/healthd/healthd_logformat.conf to /var/proxy/staging/nginx/conf.d/healthd_logformat.conf
+2026/10/02 12:54:12.698118 [INFO] Copying file /opt/elasticbeanstalk/config/private/healthd/healthd_nginx.conf to /var/proxy/staging/nginx/conf.d/elasticbeanstalk/healthd.conf
+2026/10/02 12:54:12.699236 [INFO] Executing instruction: configure log streaming
+2026/10/02 12:54:12.699245 [INFO] log streaming is not enabled
+2026/10/02 12:54:12.699250 [INFO] disable log stream
+2026/10/02 12:54:12.699261 [INFO] Running command: systemctl show -p PartOf amazon-cloudwatch-agent.service
+2026/10/02 12:54:12.716316 [INFO] Running command: systemctl stop amazon-cloudwatch-agent.service
+2026/10/02 12:54:12.731614 [INFO] Executing instruction: GetToggleForceRotate
+2026/10/02 12:54:12.731637 [INFO] Checking if logs need forced rotation
+2026/10/02 12:54:12.731656 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:746143676727:stack/awseb-e-bsxfugayip-stack/658f51a0-b282-11f1-b5ba-0e124af3a6a1 -r AWSEBAutoScalingGroup --region us-east-1
+2026/10/02 12:54:12.970399 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:746143676727:stack/awseb-e-bsxfugayip-stack/658f51a0-b282-11f1-b5ba-0e124af3a6a1 -r AWSEBBeanstalkMetadata --region us-east-1
+2026/10/02 12:54:13.238448 [INFO] Generating rsyslog config from Procfile
+2026/10/02 12:54:13.240667 [INFO] Running command: systemctl restart rsyslog.service
+2026/10/02 12:54:13.817521 [INFO] Executing instruction: PostBuildEbExtension
+2026/10/02 12:54:13.817592 [INFO] Starting executing the config set Infra-EmbeddedPostBuild.
+2026/10/02 12:54:13.817608 [INFO] Running command: /opt/aws/bin/cfn-init -s arn:aws:cloudformation:us-east-1:746143676727:stack/awseb-e-bsxfugayip-stack/658f51a0-b282-11f1-b5ba-0e124af3a6a1 -r AWSEBAutoScalingGroup --region us-east-1 --configsets Infra-EmbeddedPostBuild
+2026/10/02 12:54:14.361609 [INFO] Error occurred during build: Command 01_migrate failed
+
+2026/10/02 12:54:14.361890 [ERROR] An error occurred during execution of command [app-deploy] - [PostBuildEbExtension]. Stop running the command. Error: container commands build failed. Please refer to /var/log/cfn-init.log for more details. 
+
+2026/10/02 12:54:14.361895 [INFO] Executing cleanup logic
+2026/10/02 12:54:14.362007 [INFO] CommandService Response: {"status":"FAILURE","api_version":"1.0","results":[{"status":"FAILURE","msg":"Engine execution has encountered an error.","returncode":1,"events":[{"msg":"Instance deployment successfully generated a 'Procfile'.","timestamp":1790945651057,"severity":"INFO"},{"msg":"Instance deployment failed. For details, see 'eb-engine.log'.","timestamp":1790945654361,"severity":"ERROR"}]}]}
+
+2026/10/02 12:54:14.388218 [INFO] Platform Engine finished execution on command: app-deploy
+
+2026/10/02 12:56:09.165170 [INFO] Starting...
+2026/10/02 12:56:09.165226 [INFO] Starting EBPlatform-PlatformEngine
+2026/10/02 12:56:09.165253 [INFO] reading event message file
+2026/10/02 12:56:09.165775 [INFO] Engine received EB command cfn-hup-exec
+
+2026/10/02 12:56:09.250586 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:746143676727:stack/awseb-e-bsxfugayip-stack/658f51a0-b282-11f1-b5ba-0e124af3a6a1 -r AWSEBAutoScalingGroup --region us-east-1
+2026/10/02 12:56:09.443821 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:746143676727:stack/awseb-e-bsxfugayip-stack/658f51a0-b282-11f1-b5ba-0e124af3a6a1 -r AWSEBBeanstalkMetadata --region us-east-1
+2026/10/02 12:56:09.641535 [INFO] checking whether command tail-log is applicable to this instance...
+2026/10/02 12:56:09.641548 [INFO] this command is applicable to the instance, thus instance should execute command
+2026/10/02 12:56:09.641552 [INFO] Engine command: (tail-log)
+
+2026/10/02 12:56:09.641608 [INFO] Executing instruction: GetTailLogs
+2026/10/02 12:56:09.641612 [INFO] Tail Logs...
+2026/10/02 12:56:09.642048 [INFO] Running command: tail -n 100 /var/log/web.stdout.log
+2026/10/02 12:56:09.645115 [INFO] Running command: tail -n 100 /var/log/eb-engine.log
+
+
+----------------------------------------
+/var/log/eb-hooks.log
+----------------------------------------
+Package cairo-1.18.0-4.amzn2023.0.3.x86_64 is already installed.
+Package cairo-devel-1.18.0-4.amzn2023.0.3.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+
+2026/10/02 12:54:07.981908 [INFO] Running command: .platform/hooks/prebuild/01_install_cairo.sh
+2026/10/02 12:54:10.564750 [INFO] Last metadata expiration check: 0:27:11 ago on Fri Oct  2 12:26:58 2026.
+Package gcc-11.5.0-5.amzn2023.0.5.x86_64 is already installed.
+Package pkgconf-pkg-config-1.8.0-4.amzn2023.0.2.x86_64 is already installed.
+Package cairo-1.18.0-4.amzn2023.0.3.x86_64 is already installed.
+Package cairo-devel-1.18.0-4.amzn2023.0.3.x86_64 is already installed.
+Dependencies resolved.
+================================================================================
+ Package           Arch       Version                     Repository       Size
+================================================================================
+Installing:
+ python3-devel     x86_64     3.9.25-1.amzn2023.0.9       amazonlinux     207 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total download size: 207 k
+Installed size: 765 k
+Downloading Packages:
+python3-devel-3.9.25-1.amzn2023.0.9.x86_64.rpm  5.9 MB/s | 207 kB     00:00    
+--------------------------------------------------------------------------------
+Total                                           2.6 MB/s | 207 kB     00:00     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : python3-devel-3.9.25-1.amzn2023.0.9.x86_64             1/1 
+  Running scriptlet: python3-devel-3.9.25-1.amzn2023.0.9.x86_64             1/1 
+  Verifying        : python3-devel-3.9.25-1.amzn2023.0.9.x86_64             1/1 
+
+Installed:
+  python3-devel-3.9.25-1.amzn2023.0.9.x86_64                                    
+
+Complete!
+
+2026/10/02 12:54:10.564778 [INFO] ================================================================================
+WARNING:
+  A newer release of "Amazon Linux" is available.
+
+  Available Versions:
+
+  Version 2023.12.20260909:
+    Run the following command to upgrade to 2023.12.20260909:
+
+      dnf upgrade --releasever=2023.12.20260909
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.12.20260909.html
+
+  Version 2023.12.20260914:
+    Run the following command to upgrade to 2023.12.20260914:
+
+      dnf upgrade --releasever=2023.12.20260914
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.12.20260914.html
+
+  Version 2023.12.20260917:
+    Run the following command to upgrade to 2023.12.20260917:
+
+      dnf upgrade --releasever=2023.12.20260917
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.12.20260917.html
+
+  Version 2023.12.20260918:
+    Run the following command to upgrade to 2023.12.20260918:
+
+      dnf upgrade --releasever=2023.12.20260918
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.12.20260918.html
+
+  Version 2023.12.20260928:
+    Run the following command to upgrade to 2023.12.20260928:
+
+      dnf upgrade --releasever=2023.12.20260928
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.12.20260928.html
+
+  Version 2023.12.20260930:
+    Run the following command to upgrade to 2023.12.20260930:
+
+      dnf upgrade --releasever=2023.12.20260930
+
+    Release notes:
+     https://docs.aws.amazon.com/linux/al2023/release-notes/relnotes-2023.12.20260930.html
+
+================================================================================
+
+
+
+----------------------------------------
+/var/log/nginx/access.log
+----------------------------------------
+172.31.46.227 - - [02/Oct/2026:12:44:58 +0000] "GET /default.pl HTTP/1.1" 404 2475 "-" "Mozilla/5.0 (Android 8; Mobile; rv:114.0.0) Gecko/114.0.0 Firefox/114.0.0" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:44:59 +0000] "GET /main.jsa HTTP/1.1" 404 2469 "-" "Mozilla/5.0 (Android 8; Mobile; rv:114.0.0) Gecko/114.0.0 Firefox/114.0.0" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:44:59 +0000] "GET /index.cfm HTTP/1.1" 404 2472 "-" "Mozilla/5.0 (Android 8; Mobile; rv:114.0.0) Gecko/114.0.0 Firefox/114.0.0" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:45:00 +0000] "GET /default.aspx HTTP/1.1" 404 2481 "-" "Mozilla/5.0 (Android 8; Mobile; rv:114.0.0) Gecko/114.0.0 Firefox/114.0.0" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:45:00 +0000] "GET /main.jhtml HTTP/1.1" 404 2475 "-" "Mozilla/5.0 (Android 8; Mobile; rv:114.0.0) Gecko/114.0.0 Firefox/114.0.0" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:45:02 +0000] "GET /localstart.shtml HTTP/1.1" 404 2493 "-" "Mozilla/5.0 (Android 8; Mobile; rv:114.0.0) Gecko/114.0.0 Firefox/114.0.0" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:45:02 +0000] "GET / HTTP/1.1" 200 2 "-" "-" "172.233.178.66"
+172.31.46.227 - - [02/Oct/2026:12:45:02 +0000] "GET / HTTP/1.1" 200 2 "-" "-" "172.233.178.66"
+172.31.22.190 - - [02/Oct/2026:12:45:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:45:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:45:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:45:23 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:45:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:45:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:45:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:45:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:46:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:46:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:46:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:46:23 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:46:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:46:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:46:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:46:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:47:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:47:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:47:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:47:23 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:47:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:47:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:47:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:47:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:48:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:48:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:48:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:48:23 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:48:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:48:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:48:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:48:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:49:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:49:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:49:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:49:23 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:49:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:49:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:49:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:49:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:50:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:50:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:50:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:50:23 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:50:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:50:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:50:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:50:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:51:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:51:09 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:51:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:51:24 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:51:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:51:39 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:51:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:51:54 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:52:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:52:09 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:52:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:52:24 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:52:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:52:39 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:52:48 +0000] "GET /developmentserver/metadatauploader HTTP/1.1" 404 2519 "-" "Mozilla/5.0 zgrab/0.x" "20.168.124.38"
+172.31.22.190 - - [02/Oct/2026:12:52:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:52:54 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:53:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:53:09 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:53:11 +0000] "GET /developmentserver/metadatauploader HTTP/1.1" 404 2517 "-" "Mozilla/5.0 zgrab/0.x" "20.65.201.226"
+172.31.22.190 - - [02/Oct/2026:12:53:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:53:24 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:53:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:53:39 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:53:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:53:54 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:54:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:54:09 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:54:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:54:24 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:54:37 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:54:39 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:54:52 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:54:54 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:55:07 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:55:09 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:55:22 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:55:24 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:55:38 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:55:39 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:55:53 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:55:54 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.22.190 - - [02/Oct/2026:12:56:08 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+172.31.46.227 - - [02/Oct/2026:12:56:09 +0000] "GET / HTTP/1.1" 200 2 "-" "ELB-HealthChecker/2.0" "-"
+
+
+----------------------------------------
+/var/log/nginx/error.log
+----------------------------------------
+2026/09/17 11:33:38 [error] 4962#4962: *45 open() "/var/app/current/staticfiles/admin/js/nav_sidebar.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/admin/js/nav_sidebar.js HTTP/1.1", host: "speedtrust-env.eba-4m3qgrx3.us-east-1.elasticbeanstalk.com", referrer: "http://speedtrust-env.eba-4m3qgrx3.us-east-1.elasticbeanstalk.com/admin/login/?next=/admin/"
+2026/09/18 17:19:08 [error] 4963#4963: *29139 open() "/var/app/current/staticfiles/admin/javascript/hetong.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/admin/javascript/hetong.js HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:38 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/main.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:38 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/app.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:38 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/main.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.json HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:39 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/app.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.json HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:39 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/main.php" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.php HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:39 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/app.php" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.php HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:39 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/main.txt" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.txt HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:40 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/app.txt" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.txt HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:40 [error] 4963#4963: *30609 open() "/var/app/current/staticfiles/js/main.yaml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.yaml HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:40 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/app.yaml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.yaml HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:40 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/main.yml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.yml HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:41 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/app.yml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.yml HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:41 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/main.conf" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.conf HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:41 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/main.bak" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.bak HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:41 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/app.conf" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.conf HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:42 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/main.old" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.old HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:42 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/app.bak" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.bak HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:42 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/main.env" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.env HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:42 [error] 4963#4963: *30610 open() "/var/app/current/staticfiles/js/app.old" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.old HTTP/1.1", host: "52.70.56.252"
+2026/09/18 18:48:43 [error] 4962#4962: *30624 open() "/var/app/current/staticfiles/js/app.env" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.env HTTP/1.1", host: "52.70.56.252"
+2026/09/19 05:34:18 [error] 4963#4963: *41704 open() "/var/app/current/staticfiles/.git/config" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/.git/config HTTP/1.1", host: "52.70.56.252"
+2026/09/19 05:35:26 [error] 4963#4963: *41749 open() "/var/app/current/staticfiles/.git/config" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/.git/config HTTP/1.1", host: "52.70.56.252"
+2026/09/21 16:04:10 [warn] 228191#228191: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/09/21 16:04:10 [warn] 228224#228224: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/09/21 16:04:10 [warn] 228225#228225: could not build optimal types_hash, you should increase either types_hash_max_size: 1024 or types_hash_bucket_size: 64; ignoring types_hash_bucket_size
+2026/09/22 17:41:18 [warn] 228227#228227: *24945 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000001, client: 172.31.27.219, server: , request: "POST / HTTP/1.1", host: "ec2-54-164-31-103.compute-1.amazonaws.com"
+2026/09/22 17:41:19 [warn] 228227#228227: *24945 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000002, client: 172.31.27.219, server: , request: "POST / HTTP/1.1", host: "ec2-54-164-31-103.compute-1.amazonaws.com"
+2026/09/22 17:41:19 [warn] 228227#228227: *24945 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000003, client: 172.31.27.219, server: , request: "POST / HTTP/1.1", host: "ec2-54-164-31-103.compute-1.amazonaws.com"
+2026/09/22 17:41:19 [warn] 228227#228227: *24945 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000004, client: 172.31.27.219, server: , request: "POST / HTTP/1.1", host: "ec2-54-164-31-103.compute-1.amazonaws.com"
+2026/09/25 12:02:24 [warn] 228228#228228: *90212 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000005, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:02:25 [warn] 228228#228228: *90212 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000006, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:02:31 [warn] 228228#228228: *90212 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000007, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:02:31 [warn] 228228#228228: *90212 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000008, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:04:00 [error] 228228#228228: *90209 open() "/var/app/current/staticfiles/js/config.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:04:00 [error] 228228#228228: *90209 open() "/var/app/current/staticfiles/config.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/config.js HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:04:04 [error] 228228#228228: *90209 open() "/var/app/current/staticfiles/js/config.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js HTTP/1.1", host: "52.70.56.252"
+2026/09/25 12:04:06 [error] 228228#228228: *90209 open() "/var/app/current/staticfiles/config.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/config.js HTTP/1.1", host: "52.70.56.252"
+2026/09/26 02:01:21 [error] 228227#228227: *104144 open() "/var/app/current/staticfiles/admin/javascript/hetong.js" failed (2: No such file or directory), client: 172.31.27.219, server: , request: "GET /static/admin/javascript/hetong.js HTTP/1.1", host: "54.164.31.103"
+2026/09/26 21:28:12 [error] 228227#228227: *123202 open() "/var/app/current/staticfiles/js/main.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js HTTP/1.1", host: "52.70.56.252"
+2026/09/26 21:28:20 [error] 228227#228227: *123198 open() "/var/app/current/staticfiles/js/bundle.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/bundle.js HTTP/1.1", host: "52.70.56.252"
+2026/09/26 21:28:28 [error] 228227#228227: *123198 open() "/var/app/current/staticfiles/js/main.chunk.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.chunk.js HTTP/1.1", host: "52.70.56.252"
+2026/09/27 13:50:35 [error] 228227#228227: *139485 open() "/var/app/current/staticfiles/historypage.js" failed (2: No such file or directory), client: 172.31.22.190, server: , request: "GET /static/historypage.js HTTP/1.1", host: "44.196.52.159"
+2026/09/28 05:18:22 [warn] 228228#228228: *154728 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000009, client: 172.31.22.190, server: , request: "POST / HTTP/1.1", host: "ec2-44-196-52-159.compute-1.amazonaws.com"
+2026/09/28 05:18:23 [warn] 228228#228228: *154728 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000010, client: 172.31.22.190, server: , request: "POST / HTTP/1.1", host: "ec2-44-196-52-159.compute-1.amazonaws.com"
+2026/09/28 05:18:23 [warn] 228228#228228: *154728 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000011, client: 172.31.22.190, server: , request: "POST / HTTP/1.1", host: "ec2-44-196-52-159.compute-1.amazonaws.com"
+2026/09/28 05:18:23 [warn] 228228#228228: *154728 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000012, client: 172.31.22.190, server: , request: "POST / HTTP/1.1", host: "ec2-44-196-52-159.compute-1.amazonaws.com"
+2026/09/28 11:36:19 [warn] 228227#228227: *161077 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000013, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "ec2-52-70-56-252.compute-1.amazonaws.com"
+2026/09/28 11:36:19 [warn] 228227#228227: *161077 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000014, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "ec2-52-70-56-252.compute-1.amazonaws.com"
+2026/09/28 11:36:20 [warn] 228227#228227: *161077 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000015, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "ec2-52-70-56-252.compute-1.amazonaws.com"
+2026/09/28 11:36:21 [warn] 228227#228227: *161077 a client request body is buffered to a temporary file /var/lib/nginx/tmp/client_body/0000000016, client: 172.31.33.204, server: , request: "POST / HTTP/1.1", host: "ec2-52-70-56-252.compute-1.amazonaws.com"
+2026/09/29 19:32:04 [error] 228228#228228: *192567 open() "/var/app/current/staticfiles/historypage.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/historypage.js HTTP/1.1", host: "52.70.56.252"
+2026/09/30 17:31:27 [error] 228228#228228: *214156 open() "/var/app/current/staticfiles/asset-manifest.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/asset-manifest.json HTTP/1.1", host: "52.70.56.252"
+2026/09/30 17:31:45 [error] 228228#228228: *214156 "/var/app/current/staticfiles/js/index.html" is not found (2: No such file or directory), client: 172.31.33.204, server: , request: "HEAD /static/js/ HTTP/1.1", host: "52.70.56.252"
+2026/09/30 17:31:47 [error] 228228#228228: *214158 "/var/app/current/staticfiles/chunks/index.html" is not found (2: No such file or directory), client: 172.31.33.204, server: , request: "HEAD /static/chunks/ HTTP/1.1", host: "52.70.56.252"
+2026/09/30 17:31:59 [error] 228228#228228: *214158 open() "/var/app/current/staticfiles/js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "HEAD /static/js HTTP/1.1", host: "52.70.56.252"
+2026/09/30 17:31:59 [error] 228228#228228: *214158 open() "/var/app/current/staticfiles/chunks" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "HEAD /static/chunks HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:22 [error] 228228#228228: *222922 open() "/var/app/current/staticfiles/js/main.min.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.js HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:23 [error] 228228#228228: *222916 open() "/var/app/current/staticfiles/js/main.min.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.json HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:23 [error] 228228#228228: *222916 open() "/var/app/current/staticfiles/js/main.min.php" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.php HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:24 [error] 228228#228228: *222922 open() "/var/app/current/staticfiles/js/main.min.yml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.yml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:24 [error] 228228#228228: *222916 open() "/var/app/current/staticfiles/js/main.min.conf" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.conf HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:25 [error] 228228#228228: *222916 open() "/var/app/current/staticfiles/js/main.min.bak" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.bak HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:25 [error] 228228#228228: *222922 open() "/var/app/current/staticfiles/js/main.min.old" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.old HTTP/1.1", host: "52.70.56.252"
+2026/10/01 00:56:26 [error] 228228#228228: *222922 open() "/var/app/current/staticfiles/js/main.min.env" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.min.env HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:01 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.map" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.map HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:01 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/app.js.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.js HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:02 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.json HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:02 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.php" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.php HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:03 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.txt" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.txt HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:03 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/app.js.yaml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.yaml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:04 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.yml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.yml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:04 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.conf" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.conf HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:05 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/app.js.bak" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.bak HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:05 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.old" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.old HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:06 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/app.js.env" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/app.js.env HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:22 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/main.js.map" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.map HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:23 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.js HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:24 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/main.js.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.json HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:25 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.php" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.php HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:25 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/main.js.txt" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.txt HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:26 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.yaml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.yaml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:26 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.yml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.yml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:27 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.conf" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.conf HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:27 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.bak" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.bak HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:28 [error] 228228#228228: *223248 open() "/var/app/current/staticfiles/js/main.js.old" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.old HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:03:28 [error] 228228#228228: *223090 open() "/var/app/current/staticfiles/js/main.js.env" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/main.js.env HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:28 [error] 228227#228227: *223283 open() "/var/app/current/staticfiles/js/config.js.map" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.map HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:29 [error] 228227#228227: *223284 open() "/var/app/current/staticfiles/js/config.js.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.js HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:29 [error] 228227#228227: *223283 open() "/var/app/current/staticfiles/js/config.js.json" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.json HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:30 [error] 228227#228227: *223284 open() "/var/app/current/staticfiles/js/config.js.php" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.php HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:30 [error] 228227#228227: *223284 open() "/var/app/current/staticfiles/js/config.js.txt" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.txt HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:31 [error] 228227#228227: *223284 open() "/var/app/current/staticfiles/js/config.js.yaml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.yaml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:31 [error] 228227#228227: *223283 open() "/var/app/current/staticfiles/js/config.js.yml" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.yml HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:32 [error] 228227#228227: *223283 open() "/var/app/current/staticfiles/js/config.js.conf" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.conf HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:32 [error] 228227#228227: *223283 open() "/var/app/current/staticfiles/js/config.js.bak" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.bak HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:33 [error] 228227#228227: *223283 open() "/var/app/current/staticfiles/js/config.js.old" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.old HTTP/1.1", host: "52.70.56.252"
+2026/10/01 01:04:33 [error] 228227#228227: *223284 open() "/var/app/current/staticfiles/js/config.js.env" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/js/config.js.env HTTP/1.1", host: "52.70.56.252"
+2026/10/02 00:40:02 [error] 228227#228227: *246509 open() "/var/app/current/staticfiles/admin/javascript/hetong.js" failed (2: No such file or directory), client: 172.31.33.204, server: , request: "GET /static/admin/javascript/hetong.js HTTP/1.1", host: "52.70.56.252"
+
+

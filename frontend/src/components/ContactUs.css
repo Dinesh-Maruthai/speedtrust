@@ -24,9 +24,10 @@
    CONTACT SECTION
 ══════════════════════════════ */
 .contact-section {
-  padding: 80px 5% 80px;
+  padding: 100px 5% 80px;
   background: var(--beige);
   position: relative;
+  scroll-margin-top: 80px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -52,8 +53,8 @@
   text-transform: uppercase;
   color: var(--lime-dark);
   margin-bottom: 12px;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
@@ -79,8 +80,8 @@
   letter-spacing: -0.8px;
   color: var(--green);
   margin-bottom: 16px;
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
 }
 
@@ -100,8 +101,8 @@
   font-size: 0.95rem;
   line-height: 1.7;
   color: var(--text-muted);
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
 }
 
@@ -123,8 +124,8 @@
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 32px;
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 1;
+  transform: translateY(0);
   transition: opacity 0.6s ease 0.2s, transform 0.6s ease 0.2s;
 }
 

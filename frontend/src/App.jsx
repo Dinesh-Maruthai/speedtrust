@@ -21,6 +21,24 @@ import RequireAuth from './components/RequireAuth';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminLogin from './pages/AdminLogin';
 
+// Scroll to top or target hash on route changes
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  React.useEffect(() => {
+    if (hash) {
+      const element = document.getElementById(hash.replace('#', ''));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return null;
+}
+
 // Wrapper so we can read location inside Router context
 function AppLayout() {
   const location = useLocation();
@@ -28,6 +46,7 @@ function AppLayout() {
 
   return (
     <div className="app">
+      <ScrollToTop />
       {!isAdminRoute && <Navbar />}
       <Routes>
         <Route path="/" element={
@@ -42,6 +61,7 @@ function AppLayout() {
           </>
         } />
         <Route path="/about" element={<AboutDetails />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/donate" element={<DonateNow />} />
         <Route path="/donation-success" element={<DonationSuccess />} />
         <Route path="/events" element={<Event />} />

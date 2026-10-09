@@ -38,9 +38,9 @@ const Footer = () => {
       { name: 'About Us', url: '/about', id: 'about' },
       { name: 'Gallery', url: '/gallery', id: 'gallery' },
       { name: 'Events', url: '/events', id: 'events' },
-      { name: 'Services', url: '#services', id: 'services' },
-      { name: 'Projects', url: '#projects', id: 'projects' },
-      { name: 'Contact', url: '#contact', id: 'contact' }
+      { name: 'Services', url: '/#services', id: 'services' },
+      { name: 'Projects', url: '/#projects', id: 'projects' },
+      { name: 'Contact', url: '/contact', id: 'contact' }
     ],
     
     // Legal Links
@@ -130,8 +130,10 @@ const Footer = () => {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         window.history.pushState(null, null, `#${targetId}`);
+        return;
       }
-    } else if (url && url !== '#') {
+    }
+    if (url && url !== '#') {
       window.location.href = url;
     }
   };
