@@ -494,8 +494,11 @@ def generate_payment_receipt_pdf(donation):
 def send_donation_confirmation_email(donation):
     """
     Send donation confirmation email to donor with attached receipt.
+    Runs in a background thread so SMTP blocking never kills the Gunicorn worker.
     All steps are logged to the terminal for easy debugging.
     """
+    import threading
+
     print(f"\n[EMAIL] ---- send_donation_confirmation_email called ----")
     print(f"[EMAIL] Donation ID : {donation.donation_id}")
     print(f"[EMAIL] Donor email : {donation.donor_email}")
@@ -555,15 +558,24 @@ def send_donation_confirmation_email(donation):
         except Exception as pdf_err:
             print(f"[EMAIL] PDF generation failed (non-fatal, continuing without attachment): {pdf_err}")
 
-        # --- Send ---
-        print(f"[EMAIL] Sending email to {donation.donor_email} ...")
-        msg.send(fail_silently=False)   # fail_silently=False so SMTP errors are printed below
-        print(f"[EMAIL] ✅ Email sent successfully to {donation.donor_email}!")
+    except Exception as build_err:
+        print(f"[EMAIL] ❌ Failed to build email: {build_err}")
+        return
 
-    except Exception as smtp_err:
-        print(f"[EMAIL] ❌ Email sending failed: {smtp_err}")
+    # --- Send in background thread so SMTP blocking never kills the Gunicorn worker ---
+    def _send():
+        try:
+            print(f"[EMAIL] Sending email to {donation.donor_email} (background thread)...")
+            msg.send(fail_silently=True)   # fail_silently=True — errors logged below
+            print(f"[EMAIL] ✅ Email sent successfully to {donation.donor_email}!")
+        except Exception as smtp_err:
+            print(f"[EMAIL] ❌ Email sending failed (background): {smtp_err}")
+        finally:
+            print("[EMAIL] ---- send_donation_confirmation_email done ----\n")
 
-    print("[EMAIL] ---- send_donation_confirmation_email done ----\n")
+    t = threading.Thread(target=_send, daemon=True)
+    t.start()
+    print("[EMAIL] Email dispatched to background thread — returning immediately.")
 
 
 def update_campaign_raised_amount(campaign_id, amount):

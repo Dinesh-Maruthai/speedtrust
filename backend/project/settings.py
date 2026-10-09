@@ -67,6 +67,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
     "https://speedtrust-test.netlify.app",
+    "https://karunaiillam.netlify.app",
+    "https://karunai.onrender.com",
 ]
 
 # Allow all origins in development (optional - for testing)
@@ -206,7 +208,9 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:5173",
-    
+    "https://karunaiillam.netlify.app",
+    "https://speedtrust-test.netlify.app",
+    "https://speedtrust.onrender.com",
 ]
 
 # CSRF_COOKIE_SAMESITE = 'Lax'
