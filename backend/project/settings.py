@@ -69,6 +69,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://speedtrust-test.netlify.app",
     "https://karunaiillam.netlify.app",
     "https://karunai.onrender.com",
+    "https://speedtrust.onrender.com"
 ]
 
 # Allow all origins in development (optional - for testing)
