@@ -239,7 +239,7 @@ const ContactUs = () => {
 
   return (
     <section id="contact" className="contact-section" ref={sectionRef}>
-      <div className="contact-container">
+      <div className="contactus-wrapper">
         {/* Section Header */}
         <div className="contact-header">
           <div className={`sec-eyebrow ${isVisible ? 'visible' : ''}`}>
