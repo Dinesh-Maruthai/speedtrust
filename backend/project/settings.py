@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-=oy+s^2s=nm_eyf77@z!)0by0u^7gayo3r%u$zt_r3e=_!+hh5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.railway.app', 'speedtrust-production.up.railway.app', '.elasticbeanstalk.com', '*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.railway.app', 'speedtrust-production.up.railway.app', 'speedtrust.onrender.com']
 
 # Application definition
 INSTALLED_APPS = [
@@ -41,9 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # Third party apps
-    'corsheaders',  # ADD THIS - for CORS support
+    'corsheaders',  # for CORS support
     'rest_framework',  # for REST API
     'rest_framework_simplejwt',  # JWT authentication
+    'storages',  # django-storages → uploads to Supabase bucket (NOT AWS)
     
     # Local apps
     'donations',
@@ -69,6 +70,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://speedtrust-test.netlify.app",
     "https://karunaiillam.netlify.app",
     "https://karunai.onrender.com",
+    "https://karunaiillam.speedtrust.org"
 ]
 
 # Allow all origins in development (optional - for testing)
@@ -170,9 +172,50 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# ─── Supabase Storage ────────────────────────────────────────────────────────
+# Files (event thumbnails, gallery images, PDFs) are stored in your Supabase
+# storage bucket. boto3 is just the S3-protocol client; the actual endpoint
+# points to your Supabase project — not Amazon AWS.
+#
+# Set USE_S3=True in Render environment variables to activate cloud storage.
+# Locally (USE_S3=False) files are saved to the local media/ folder as usual.
+USE_S3 = os.getenv('USE_S3', 'False') == 'True'
+
+if USE_S3:
+    SUPABASE_PROJECT_ID  = os.getenv('SUPABASE_PROJECT_ID')   # e.g. ttnintzwogdxsqglvebk
+    SUPABASE_REGION      = os.getenv('SUPABASE_REGION', 'ap-south-1')
+    SUPABASE_BUCKET      = os.getenv('SUPABASE_BUCKET', 'media')
+    SUPABASE_ACCESS_KEY  = os.getenv('SUPABASE_ACCESS_KEY_ID')
+    SUPABASE_SECRET_KEY  = os.getenv('SUPABASE_SECRET_ACCESS_KEY')
+    SUPABASE_ENDPOINT    = f'https://{SUPABASE_PROJECT_ID}.supabase.co/storage/v1/s3'
+    SUPABASE_PUBLIC_URL  = f'{SUPABASE_PROJECT_ID}.supabase.co/storage/v1/object/public/{SUPABASE_BUCKET}'
+
+    # django-storages STORAGES dict (v1.14+) — credentials passed directly,
+    # so no AWS_* variable names are needed anywhere in this file.
+    STORAGES = {
+        'default': {
+            'BACKEND': 'storages.backends.s3boto3.S3Boto3Storage',
+            'OPTIONS': {
+                'access_key':      SUPABASE_ACCESS_KEY,
+                'secret_key':      SUPABASE_SECRET_KEY,
+                'bucket_name':     SUPABASE_BUCKET,
+                'region_name':     SUPABASE_REGION,
+                'endpoint_url':    SUPABASE_ENDPOINT,
+                'custom_domain':   SUPABASE_PUBLIC_URL,
+                'file_overwrite':  False,
+                'default_acl':     'public-read',
+                'querystring_auth': False,   # public bucket → plain URLs
+            },
+        },
+        'staticfiles': {
+            'BACKEND': 'django.contrib.staticfiles.storage.StaticFilesStorage',
+        },
+    }
+    MEDIA_URL = f'https://{SUPABASE_PUBLIC_URL}/'
+else:
+    # Local development — serve from local filesystem
+    MEDIA_URL  = '/media/'
+    MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

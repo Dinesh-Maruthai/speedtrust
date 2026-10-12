@@ -153,10 +153,17 @@ class EventSerializer(serializers.ModelSerializer):
         return super().to_internal_value(data)
 
     def get_thumbnail_url(self, obj):
+        if not obj.thumbnail:
+            return obj.thumbnail_url  # fallback external URL field
+        url = obj.thumbnail.url
+        # If already absolute (Supabase/S3 URL), return as-is
+        if url.startswith('http://') or url.startswith('https://'):
+            return url
+        # Local dev: build absolute URI from request
         request = self.context.get('request')
-        if obj.thumbnail and request:
-            return request.build_absolute_uri(obj.thumbnail.url)
-        return obj.thumbnail_url
+        if request:
+            return request.build_absolute_uri(url)
+        return url
 
 
 class TagsField(serializers.Field):
@@ -216,12 +223,17 @@ class GalleryItemSerializer(serializers.ModelSerializer):
         read_only_fields = ['id', 'created_at', 'updated_at', 'image_src']
 
     def get_image_src(self, obj):
+        if not obj.image:
+            return obj.image_url or ''  # fallback to external URL field
+        url = obj.image.url
+        # If already absolute (Supabase/S3 URL), return as-is
+        if url.startswith('http://') or url.startswith('https://'):
+            return url
+        # Local dev: build absolute URI from request
         request = self.context.get('request')
-        if obj.image:
-            if request:
-                return request.build_absolute_uri(obj.image.url)
-            return obj.image.url
-        return obj.image_url or ''
+        if request:
+            return request.build_absolute_uri(url)
+        return url
 
     def to_internal_value(self, data):
         if hasattr(data, '_mutable') and not data._mutable:
