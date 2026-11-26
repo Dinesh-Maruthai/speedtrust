@@ -13,26 +13,31 @@ const AboutDetails = () => {
     hero: {
       eyebrow: 'About Us',
       title: 'Enabling Lives through Education, Care and Inclusion.',
-      subtitle: 'Social Public Education and Economic Development Trust (SPEED TRUST), Kallakurichi, is a charitable non-profit working for the education, welfare, rehabilitation, and economic development of tribal children, rural poor families, school dropouts, and persons with intellectual and developmental disabilities in Tamil Nadu.',
-      meta: 'Established 15 August 2006 · Registered under the Indian Trust Act 1882, Sub-Registrar Office Kallakurichi District · Registration No. 459/2009'
+      subtitle: 'Social Public Education and Economic Development Trust (SPEED TRUST), Kallakurichi, is a registered charitable trust working for the education, welfare, rehabilitation, and economic empowerment of Mentally Disabled children, street children, tribal children, rural poor families, school dropouts, and underprivileged communities in Kallakurichi District, Tamil Nadu, India.',
+      meta: 'Founded 2009 by Mr. P. Sivasuriyan, D.M.E, M.A, M.S.W. · Registered under the Indian Trusts Act 1882, Kallakurichi Sub-Registrar Office · Co-founded by Seven Members'
     },
 
     missionVision: {
-      mission: 'To create meaningful opportunities for individuals to develop their skills, discover their purpose, and achieve the highest possible level of independence with dignity, through comprehensive quality services, advocacy, rehabilitation, education, tribal children\'s education, and inclusive partnerships.',
-      vision: 'An equal and inclusive society in which emotional, mental, physical, and learning differences are respected and valued — where every person, regardless of disability or social background, has the right to dignity, education, care, opportunity, and participation in community life.'
+      mission: 'To serve the Mentally Disabled and street children in rural, tribal, and underprivileged communities in the age group of 6–18 years — providing shelter, food, clothing, special education, and rehabilitation — so that every child, regardless of disability or social background, can achieve dignity, independence, and a meaningful life.',
+      vision: 'An equal and inclusive society where Mentally Disabled children and underprivileged youth from Kallakurichi District and surrounding areas are never left behind — where every child has access to free residential care, quality education, and the opportunity to grow, learn, and contribute to community life.'
     },
 
     // Focus Areas
     focusAreas: [
       {
-        icon: '',
-        title: 'Care for Children with Disabilities',
-        description: 'Providing free and comprehensive care, education, rehabilitation, and support to children and adults with intellectual and developmental disabilities.'
+        icon: '🤝',
+        title: 'Residential Special Home for Mentally Disabled Children',
+        description: 'Running a Residential Special Home (Aadhi Special School) for 40 Mentally Disabled children in the age group of 6–18 years. Located at No. 62B/6, Kachirapalayam Road, Kallakurichi — registered under the State Commissioner for the Welfare of Differently Abled, Chennai, Tamil Nadu.'
       },
       {
-        icon: '',
-        title: 'Tribal Children Education',
-        description: 'Providing free, quality residential education and essential support to vulnerable tribal children in the Kalvarayan Hills and other rural areas of Kallakurichi District.'
+        icon: '🏫',
+        title: 'Residential School for Orphans & Street Children',
+        description: 'Operating a Residential School at Alathur Village, Sankarapuram Taluk, Kallakurichi District under Samagra Shiksha Abhiyan for 75 orphaned and underprivileged children in the age group of 6–14 years — providing free food, shelter, clothing, and education.'
+      },
+      {
+        icon: '🔍',
+        title: 'Community Survey & Outreach',
+        description: 'Conducted ground-level surveys across Kallakurichi, Chinnasalem, Thyagadurugam, Sankarapuram, and Kalrayan Hills blocks — identifying 187 Mentally Disabled children and 349 Street Children in need of immediate care and support.'
       }
     ],
 
@@ -40,11 +45,49 @@ const AboutDetails = () => {
     projects: [
       {
         id: 1,
-        title: 'PCDS Global School',
-        location: 'Kinathuvalavu Village, Innadu Post, Kalvarayan Hills, Kallakurichi District, Tamil Nadu',
-        description: 'Since 2015, operating under the Department of Tribal Welfare, Kallakurichi District, Govt. of Tamil Nadu — free residential education from LKG to Class VIII for tribal children.',
+        title: 'Aadhi Special School for Mentally Disabled',
+        location: 'No. 62B/6, Kachirapalayam Road, Kallakurichi Taluk & District – 606202, Tamil Nadu (Rented building, operational since 17 July 2010)',
+        description: 'Registered under the State Commissioner for the Welfare of Differently Abled, Chennai, Tamil Nadu. The Trust identified 187 Mentally Disabled children across 8 blocks of Kallakurichi District through a ground survey. 40 children have been admitted as residential beneficiaries. Their families — daily-wage agricultural and unorganised sector workers — cannot afford even basic food, let alone care for a disabled child. We provide comprehensive free care.',
         services: [
-          'Free residential education',
+          'Free residential accommodation',
+          'Nutritious daily food (3 meals)',
+          'Clothing and school uniforms',
+          'Special education for Mentally Disabled children (age 6–18)',
+          'Basic amenities and personal-care support',
+          'Medical facilities and health monitoring',
+          'Physiotherapy support and training',
+          'Physical, social, and emotional development activities',
+          'Life skills and daily-living skills training',
+          'Government-supported program (Dept. of State Commissioner for Differently Abled, TN)'
+        ],
+        impact: '40 Mentally Disabled children residential beneficiaries · 187 identified in district survey',
+        emoji: '🤝'
+      },
+      {
+        id: 2,
+        title: 'Residential School for Orphans & Street Children (SSA)',
+        location: 'Alathur Village, Sankarapuram Taluk, Kallakurichi District, Tamil Nadu',
+        description: 'Operating under Samagra Shiksha Abhiyan for 75 orphaned, abandoned, and street-connected children in the age group of 6–14 years. The Trust surveyed Kallakurichi, Chinnasalem, Thyagadurugam, Sankarapuram, and Kalrayan Hills blocks and found 349 Street Children in need. This residential school addresses their educational and basic needs completely free of cost.',
+        services: [
+          'Free residential accommodation',
+          'Nutritious daily food',
+          'Clothing and basic amenities',
+          'Free quality education (bridge/mainstream)',
+          'Yoga and life-skills training',
+          'Health and personal-care support',
+          'Assistance enrolling in regular schools',
+          'Child protection and safe environment'
+        ],
+        impact: '75 orphaned & street children supported · 349 identified in block-level surveys',
+        emoji: '🏫'
+      },
+      {
+        id: 3,
+        title: 'PCDS Global School – Tribal Children Education',
+        location: 'Kinathuvalavu Village, Innadu Post, Kalvarayan Hills, Kallakurichi District, Tamil Nadu',
+        description: 'Since 2015, operating under the Department of Tribal Welfare, Kallakurichi District, Govt. of Tamil Nadu — providing free residential education from LKG to Class VIII for tribal children from the Kalvarayan Hills and surrounding areas.',
+        services: [
+          'Free residential education (LKG to Class VIII)',
           'Free food and accommodation',
           'Free clothing and school uniforms',
           'Free shoes, belts, and ties',
@@ -55,33 +98,13 @@ const AboutDetails = () => {
           'Overall development and child protection support'
         ],
         impact: '~380 tribal children supported annually',
-        emoji: ''
+        emoji: '🌿'
       },
       {
-        id: 2,
-        title: 'Aadhi Special School for Persons with Intellectual Disabilities',
-        location: 'Ka. Mamanandhal, Kallakurichi – 606202, Tamil Nadu',
-        description: 'Individual-centred special education, residential care, rehabilitation, and developmental support (communication, self-care, social, educational, physical, functional skills). Supported by the District Differently Abled Welfare Office, Kallakurichi District, Govt. of Tamil Nadu.',
-        services: [
-          'Free special education',
-          'Free food and accommodation',
-          'Free clothing and uniforms',
-          'Free shoes, belts, and ties',
-          'Basic amenities and personal-care support',
-          'Medical facilities and health monitoring',
-          'Quality educational/learning materials',
-          'Physiotherapy support and training',
-          'Physical/social/emotional development activities',
-          'Guidance toward daily living and independence'
-        ],
-        impact: '~40 inmates served annually',
-        emoji: ''
-      },
-      {
-        id: 3,
+        id: 4,
         title: 'Aadhi Adult Home for Persons with Intellectual Disabilities',
         location: 'Ka. Mamanandhal, Kallakurichi, Tamil Nadu',
-        description: 'Residential care, life-skills education, and vocational training for adults with intellectual disabilities, building confidence, practical abilities, self-reliance, and a path to a more stable, dignified life.',
+        description: 'Residential care, life-skills education, and vocational training for adults with intellectual disabilities — building confidence, practical abilities, self-reliance, and a path to a more stable, dignified life.',
         services: [
           'Tailoring',
           'Embroidery',
@@ -91,63 +114,48 @@ const AboutDetails = () => {
           'Other livelihood-oriented activities'
         ],
         impact: 'Vocational training for adults with disabilities',
-        emoji: ''
-      },
-      {
-        id: 4,
-        title: 'Residential Education for School Dropouts (SSA-Villupuram District, 2010–2020)',
-        location: 'Villupuram District, Tamil Nadu',
-        description: 'Residential education for school dropouts, street-connected children, children from migrant families, and other vulnerable children aged 6–14. Supported by Samagra Shiksha Abhiyan, Villupuram District, since 16 July 2010.',
-        services: [
-          'Free food and accommodation',
-          'Clothing and basic amenities',
-          'Special and bridge education',
-          'Yoga and karate training',
-          'Vocational and life-skills training',
-          'Health and personal-care support',
-          'Assistance enrolling in regular schools'
-        ],
-        impact: '~1,400 school-dropout children benefited (2010–2020) · ~100 children supported per year',
-        emoji: ''
+        emoji: '🏡'
       }
     ],
 
     // Government Partnerships
     partnerships: [
-      'Department of Tribal Welfare, Kallakurichi District',
+      'Department of State Commissioner for the Welfare of Differently Abled, Chennai, Tamil Nadu',
       'District Differently Abled Welfare Office, Kallakurichi District',
-      'Social Welfare Department',
-      'Samagra Shiksha Abhiyan',
-      'Other government agencies and community partners'
+      'Department of Tribal Welfare, Kallakurichi District',
+      'Samagra Shiksha Abhiyan (SSA)',
+      'Social Welfare Department, Government of Tamil Nadu',
+      'Govt. of India – 80G Tax Exemption (Income Tax Act)'
     ],
 
     // Impact Areas
     impactAreas: [
-      'Increased access to education for tribal children',
-      'Prevention and reduction of school dropouts',
-      'Residential care for vulnerable children',
-      'Special education for children with intellectual disabilities',
-      'Physiotherapy and rehabilitation support',
-      'Development of daily living skills',
-      'Vocational training for adults with disabilities',
-      'Greater family and community inclusion',
-      'Improved confidence, dignity, and livelihood opportunities'
+      '187 Mentally Disabled children identified across 8 blocks of Kallakurichi District',
+      '349 Street Children identified across Kallakurichi, Chinnasalem, Thyagadurugam, Sankarapuram & Kalrayan Hills blocks',
+      '40 Mentally Disabled children in full-time residential care (Aadhi Special School)',
+      '75 orphaned & underprivileged children in residential school (Alathur Village)',
+      'Free special education for Mentally Disabled children aged 6–18',
+      'Physiotherapy, rehabilitation and life-skills training',
+      '~380 tribal children supported annually at PCDS Global School',
+      '~1,400 school-dropout children benefited from SSA program (2010–2020)',
+      'All programs 100% free — food, shelter, clothing, education, medical care',
+      'Government recognition from Govt. of Tamil Nadu for Disabled Home'
     ],
-    impactReach: 'Kallakurichi District, Kalvarayan Hills, and surrounding areas — including Cuddalore, Salem, and Villupuram regions.',
+    impactReach: 'Kallakurichi District — including Kallakurichi, Chinnasalem, Thyagadurugam, Sankarapuram blocks, Kalrayan Hills, and formerly Villupuram District.',
 
     // Proposed Building Project
     buildingProject: {
       title: 'Proposed Permanent Building Project',
-      description: 'SPEED TRUST is replacing its current leased premises with a permanent building on publicly donated land at Ka. Mamanandhal Road, Kallakurichi, to serve approximately 380 tribal children from the Kalvarayan Hills.',
+      description: 'SPEED TRUST is seeking to build a permanent own building (replacing the current rented premises at No. 62B/6, Kachirapalayam Road, Kallakurichi) to serve approximately 40 Mentally Disabled children and expand capacity. The Trust welcomes donations of cash or construction materials from individuals, companies, CSR partners, and well-wishers.',
       features: [
-        'Free residential accommodation',
-        'Nutritious food',
+        'Free residential accommodation for Mentally Disabled children',
+        'Nutritious daily food (3 meals)',
         'Basic amenities and personal-care facilities',
         'Health services and regular medical support',
-        'Mental-health and emotional-wellness support',
+        'Special education classrooms and therapy rooms',
         'School uniforms, clothing, footwear, books, and materials',
         'A secure, supportive learning environment',
-        'Sports, cultural activities, and personality development'
+        'Physiotherapy and vocational training spaces'
       ],
       cost: '₹53 lakh'
     },
@@ -206,7 +214,7 @@ const AboutDetails = () => {
 
     // Closing
     closing: {
-      message: 'We welcome individuals, institutions, companies, CSR partners, charitable foundations, volunteers, and well-wishers to partner with SPEED TRUST. Together, we can create equal opportunities for tribal children, school dropouts, and persons with disabilities.',
+      message: 'We welcome individuals, institutions, companies, CSR partners, charitable foundations, volunteers, and well-wishers to partner with SPEED TRUST. Your support — in cash or kind — helps us serve Mentally Disabled children, orphans, and underprivileged youth across Kallakurichi District. Even local, Indian, and international donations are eligible for tax exemption under Section 80G of the Income Tax Act, Govt. of India.',
       tagline: 'SPEED TRUST — Enabling lives through education, care, dignity, and opportunity.'
     }
   });

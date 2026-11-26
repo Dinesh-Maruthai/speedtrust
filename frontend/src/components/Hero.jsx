@@ -54,19 +54,19 @@ const Hero = () => {
                 <polyline points="2,6 5,9 10,3" stroke="#133215" strokeWidth="1.8" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            Since 2008 — 16+ Years of Hope
+            Since 2009 — 15+ Years of Serving Children
           </div>
         </div>
 
         {/* title */}
         <h1 className="hero-title">
-          Speed Trust<br />in <em>Kallakurichi</em>
+          SPEED TRUST<br />in <em>Kallakurichi</em>
         </h1>
 
         {/* description */}
         <p className="hero-desc">
-          We provide shelter, food and education to orphaned, abandoned and underprivileged children.
-          Our residential program ensures a safe and nurturing environment where children can grow and learn without financial burdens.
+          <strong>Social Public Education and Economic Development Trust</strong> — serving Mentally Disabled and street children from rural, tribal, and underprivileged communities in Kallakurichi District, Tamil Nadu since 2009.
+          Registered under the Indian Trusts Act 1882, we provide free residential care, special education, food, clothing, and shelter — 100% at no cost to families.
         </p>
 
         {/* CTA buttons */}

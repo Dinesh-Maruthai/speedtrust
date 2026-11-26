@@ -24,30 +24,30 @@ const AboutUs = () => {
     titleHighlight: 'Are',
     
     // Full name badge
-    fullName: 'Enabling Lives through Education, Care and Inclusion.',
+    fullName: 'Social Public Education and Economic Development Trust',
     
     // Main description
-    description: `Social Public Education and Economic Development Trust (SPEED TRUST), Kallakurichi, is a charitable non-profit organization working for the education, welfare, rehabilitation, and economic development of tribal children, rural poor families, school dropouts, and persons with intellectual and developmental disabilities in Tamil Nadu.`,
+    description: `Social Public Education and Economic Development Trust (SPEED TRUST) was founded in 2009 by Mr. P. Sivasuriyan (D.M.E, M.A, M.S.W.) in cooperation with seven members. Registered under the Indian Trusts Act 1882 at the Kallakurichi Sub-Registrar Office, we serve Mentally Disabled and street children from rural, tribal, and underprivileged communities in the age group of 6–18 years across Kallakurichi District, Tamil Nadu, India.`,
     
     // Pillars/Highlights
     pillars: [
       {
-        icon: '🍽️',
-        text: 'We ensure all children under our care receive ',
-        highlight: 'balanced, nutritious meals',
-        suffix: ' every single day.'
-      },
-      {
         icon: '🤝',
-        text: 'Our dedicated school for ',
-        highlight: 'differently-abled children',
-        suffix: ' supports those with autism and cerebral palsy.'
+        text: 'Running a Residential Special Home for ',
+        highlight: '40 Mentally Disabled children',
+        suffix: ' (age 6–18) at Aadhi Special School, Kallakurichi — operational since July 2010.'
       },
       {
-        icon: '🏠',
-        text: 'We provide ',
-        highlight: 'shelter, food, and education',
-        suffix: ' to orphaned, abandoned, and underprivileged children.'
+        icon: '🏫',
+        text: 'Residential School at Alathur Village for ',
+        highlight: '75 orphaned & street children',
+        suffix: ' (age 6–14) under Samagra Shiksha Abhiyan, Sankarapuram Taluk.'
+      },
+      {
+        icon: '🔍',
+        text: 'Surveys found ',
+        highlight: '187 Disabled & 349 Street Children',
+        suffix: ' across 5 blocks — all receive 100% free food, shelter, clothing & education.'
       }
     ],
     
@@ -63,14 +63,14 @@ const AboutUs = () => {
     // Stat badges
     badges: [
       {
-        number: '500+',
+        number: '536+',
         label: 'Children Supported',
         position: 'bottom-left',
         delay: 'd2'
       },
       {
-        number: '16+ Yrs',
-        label: 'Of Dedicated Service',
+        number: '15+ Yrs',
+        label: 'Since 2009',
         position: 'top-right',
         delay: 'd3'
       }

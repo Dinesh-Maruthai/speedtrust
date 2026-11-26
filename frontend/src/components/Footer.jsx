@@ -1,8 +1,10 @@
 // components/Footer.jsx - Optimized with reduced height
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 const Footer = () => {
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const footerRef = useRef(null);
@@ -11,18 +13,18 @@ const Footer = () => {
   const [footerData, setFooterData] = useState({
     // Organization Info
     organization: {
-      name: 'Speed Trust',
-      tagline: 'Empowering Lives, Building Futures',
-      description: 'Dedicated to providing shelter, food, education, and care for orphaned, abandoned, and underprivileged children since 2008.',
+      name: 'SPEED TRUST',
+      tagline: 'Social Public Education and Economic Development Trust',
+      description: 'Founded in 2009 by Mr. P. Sivasuriyan, registered under the Indian Trusts Act 1882 at Kallakurichi Sub-Registrar Office. Serving Mentally Disabled and street children across Kallakurichi District since 2009.',
       logoIcon: ''
     },
     
     // Address Information
     address: {
-      line1: 'Ka.Mamananthal Village',
-      line2: 'Kallakurichi & Taluk - 606202',
-      line3: 'Kallakurichi District',
-      line4: 'Tamilnadu, India'
+      line1: 'No. 62B/6, Kachirapalayam Road',
+      line2: 'Kallakurichi Taluk & District – 606202',
+      line3: 'Tamil Nadu, India',
+      line4: ''
     },
     
     // Contact Information
@@ -45,8 +47,8 @@ const Footer = () => {
     
     // Legal Links
     legalLinks: [
-      { name: 'Terms of Service', url: '#', id: 'terms' },
-      { name: 'Privacy Policy', url: '#', id: 'privacy' }
+      { name: 'Terms of Service', url: '/terms', id: 'terms' },
+      { name: 'Privacy Policy', url: '/privacy', id: 'privacy' }
     ],
     
     // Social Media Links
@@ -125,6 +127,12 @@ const Footer = () => {
   const handleNavClick = (e, targetId, url) => {
     e.preventDefault();
     
+    // If url starts with / it's a React Router path — navigate without page reload
+    if (url && url !== '#' && url.startsWith('/') && !url.includes('#')) {
+      navigate(url);
+      return;
+    }
+
     if (targetId && targetId !== '#') {
       const element = document.getElementById(targetId);
       if (element) {

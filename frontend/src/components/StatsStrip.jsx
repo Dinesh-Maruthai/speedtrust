@@ -25,11 +25,11 @@ const StatsStrip = () => {
   }, []);
 
   const stats = [
-    { number: '500+', label: 'Children Supported', delay: 0 },
-    { number: '16+', label: 'Years of Service', delay: 0.1 },
-    { number: '3', label: 'Core Programs', delay: 0.2 },
-    { number: '100%', label: 'Free of Cost', delay: 0.3 },
-    { number: '₹0', label: 'Charged to Families', delay: 0.4 },
+    { number: '187', label: 'Disabled Children Identified', delay: 0 },
+    { number: '349', label: 'Street Children Found', delay: 0.1 },
+    { number: '15+', label: 'Years of Service (2009)', delay: 0.2 },
+    { number: '100%', label: 'Free for All Families', delay: 0.3 },
+    { number: '₹0', label: 'Charged to Beneficiaries', delay: 0.4 },
   ];
 
   return (

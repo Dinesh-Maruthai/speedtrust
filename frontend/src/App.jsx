@@ -16,6 +16,8 @@ import DonationSuccess from './components/DonationSuccess';
 import AboutDetails from './components/AboutDetails/AboutDetails';
 import DetailedCard from './components/Events/DetailedCard';
 import Gallery from './components/Gallery/Gallery';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
 import './App.css';
 import RequireAuth from './components/RequireAuth';
 import AdminDashboard from './pages/AdminDashboard';
@@ -67,6 +69,8 @@ function AppLayout() {
         <Route path="/events" element={<Event />} />
         <Route path="/events/:id" element={<DetailedCard />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route
           path="/admin/*"
